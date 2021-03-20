@@ -1,3 +1,4 @@
+Instructions: <br>
 [1] Pull<Br>
 [2] Run "npm install" - this will get server dependencies<Br>
 [3] change dir to "react-client"<Br>
