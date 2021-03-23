@@ -1,7 +1,4 @@
-﻿// NEEDS CHANGES!
-////////
-
-const Student = require('mongoose').model('Student');
+﻿const Student = require('mongoose').model('Student');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../../config/config');
@@ -39,17 +36,17 @@ const getErrorMessage = function(err) {
 // Create a new user
 exports.create = function (req, res, next) {
     // Create a new instance of the 'User' Mongoose model
-    var user = new User(req.body); //get data from React form
-    console.log("body: " + req.body.username);
+    var student = new Student(req.body); //get data from React form
+    console.log("body: " + req.body.studentNumber);
 
     // Use the 'User' instance's 'save' method to save a new user document
-    user.save(function (err) {
+    student.save(function (err) {
         if (err) {
             // Call the next middleware with an error message
             return next(err);
         } else {
             // Use the 'response' object to send a JSON response
-            res.json(user);
+            res.json(student);
             
         }
     });
@@ -58,11 +55,11 @@ exports.create = function (req, res, next) {
 // Returns all users
 exports.list = function (req, res, next) {
     // Use the 'User' instance's 'find' method to retrieve a new user document
-    User.find({}, function (err, users) {
+    Student.find({}, function (err, students) {
         if (err) {
             return next(err);
         } else {
-            res.json(users);
+            res.json(students);
         }
     });
 };
@@ -70,7 +67,7 @@ exports.list = function (req, res, next) {
 //'read' controller method to display a user
 exports.read = function(req, res) {
 	// Use the 'response' object to send a JSON response
-	res.json(req.user);
+	res.json(req.student);
 };
 //
 // 'StudentByID' controller method to find a user by its id
@@ -102,7 +99,7 @@ exports.update = function(req, res, next) {
       res.json(student);
     });
 };
-// delete a user by id
+// delete a student by id
 exports.delete = function(req, res, next) {
     Student.findByIdAndRemove(req.student.id, req.body, function (err, student) {
       if (err) return next(err);
@@ -110,7 +107,7 @@ exports.delete = function(req, res, next) {
     });
 };
 //
-// authenticates a user
+// authenticates a student
 exports.authenticate = function(req, res, next) {
 	// Get credentials from request
 	console.log(req.body)
@@ -119,7 +116,7 @@ exports.authenticate = function(req, res, next) {
 	console.log(password)
 	console.log(studentNumber)
 	//find the user with given username using static method findOne
-	User.findOne({studentNumber: studentNumber}, (err, student) => {
+	Student.findOne({studentNumber: studentNumber}, (err, student) => {
 			if (err) {
 				return next(err);
 			} else {
@@ -182,7 +179,7 @@ exports.welcome = (req, res) => {
 	// Finally, return the welcome message to the user, along with their
 	// username given in the token
 	// use back-quotes here
-	res.send(`${payload.username}`)
+	res.send(`${payload.studentNumber}`)
  };
  //
  //sign out function in controller
@@ -220,7 +217,7 @@ exports.isSignedIn = (req, res) => {
 	}
   
 	// Finally, token is ok, return the username given in the token
-	res.status(200).send({ screen: payload.username });
+	res.status(200).send({ screen: payload.studentNumber });
 }
 
 //isAuthenticated() method to check whether a user is currently authenticated

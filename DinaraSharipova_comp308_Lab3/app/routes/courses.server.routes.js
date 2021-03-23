@@ -1,7 +1,7 @@
 ﻿// NEEDS CHANGES!
 ////////
-const users = require('../../app/controllers/students.server.controller');
-const articles = require('../../app/controllers/courses.server.controller');
+const students = require('../../app/controllers/students.server.controller');
+const courses = require('../../app/controllers/courses.server.controller');
 //
 module.exports = function (app) {
         app.route('/api/articles')
