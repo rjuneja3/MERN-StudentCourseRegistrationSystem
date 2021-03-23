@@ -1,7 +1,7 @@
 ﻿// NEEDS CHANGES!
 ////////
 
-const User = require('mongoose').model('User');
+const Student = require('mongoose').model('Student');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../../config/config');
@@ -20,7 +20,7 @@ const getErrorMessage = function(err) {
 			// If a unique index error occurs set the message error
 			case 11000:
 			case 11001:
-				message = 'Username already exists';
+				message = 'Student Number or Email already exists';
 				break;
 			// If a general error occurs set the message error
 			default:
@@ -73,19 +73,19 @@ exports.read = function(req, res) {
 	res.json(req.user);
 };
 //
-// 'userByID' controller method to find a user by its id
-exports.userByID = function (req, res, next, id) {
+// 'StudentByID' controller method to find a user by its id
+exports.StudentByID = function (req, res, next, id) {
 	// Use the 'User' static 'findOne' method to retrieve a specific user
-	User.findOne({
+	Student.findOne({
         _id: id
-	}, (err, user) => {
+	}, (err, student) => {
 		if (err) {
 			// Call the next middleware with an error message
 			return next(err);
 		} else {
 			// Set the 'req.user' property
-            req.user = user;
-            console.log(user);
+            req.student = student;
+            console.log(student);
 			// Call the next middleware
 			next();
 		}
@@ -94,19 +94,19 @@ exports.userByID = function (req, res, next, id) {
 //update a user by id
 exports.update = function(req, res, next) {
     console.log(req.body);
-    User.findByIdAndUpdate(req.user.id, req.body, function (err, user) {
+    Student.findByIdAndUpdate(req.student.id, req.body, function (err, student) {
       if (err) {
         console.log(err);
         return next(err);
       }
-      res.json(user);
+      res.json(student);
     });
 };
 // delete a user by id
 exports.delete = function(req, res, next) {
-    User.findByIdAndRemove(req.user.id, req.body, function (err, user) {
+    Student.findByIdAndRemove(req.student.id, req.body, function (err, student) {
       if (err) return next(err);
-      res.json(user);
+      res.json(student);
     });
 };
 //
@@ -114,32 +114,32 @@ exports.delete = function(req, res, next) {
 exports.authenticate = function(req, res, next) {
 	// Get credentials from request
 	console.log(req.body)
-	const username = req.body.auth.username;
+	const studentNumber = req.body.auth.studentNumber;
 	const password  = req.body.auth.password;
 	console.log(password)
-	console.log(username)
+	console.log(studentNumber)
 	//find the user with given username using static method findOne
-	User.findOne({username: username}, (err, user) => {
+	User.findOne({studentNumber: studentNumber}, (err, student) => {
 			if (err) {
 				return next(err);
 			} else {
-			console.log(user)
+			console.log(student)
 			//compare passwords	
-			if(bcrypt.compareSync(password, user.password)) {
+			if(bcrypt.compareSync(password, student.password)) {
 				// Create a new token with the user id in the payload
   				// and which expires 300 seconds after issue
-				const token = jwt.sign({ id: user._id, username: user.username }, jwtKey, 
+				const token = jwt.sign({ id: student._id, studentNumber: student.studentNumber }, jwtKey, 
 					{algorithm: 'HS256', expiresIn: jwtExpirySeconds });
 				console.log('token:', token)
 				// set the cookie as the token string, with a similar max age as the token
 				// here, the max age is in milliseconds
 				res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
-				res.status(200).send({ screen: user.username });
+				res.status(200).send({ screen: student.studentNumber });
 				//
 				//res.json({status:"success", message: "user found!!!", data:{user:
 				//user, token:token}});
 				
-				req.user=user;
+				req.student=student;
 				//call the next middleware
 				next()
 			} else {
