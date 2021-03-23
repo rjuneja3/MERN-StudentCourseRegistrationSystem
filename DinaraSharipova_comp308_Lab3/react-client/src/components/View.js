@@ -34,16 +34,16 @@ function View (props) {
     }
   }
   //
-  const listArticles = (username) => {
+  const listCourses = (username) => {
 
-    console.log('in lisArticles: ',username)
+    console.log('in listCourses: ',username)
     //setArticle('n')
 
   }
   //
-  const createArticle = () => {
-    console.log('in createArticle')
-    setArticle('y')
+  const createCourse = () => {
+    console.log('in createCourse')
+    setCourse('y')
 
   }
   //
@@ -54,8 +54,8 @@ function View (props) {
             <p>{screen}</p>
             <p>{data}</p>
             <button onClick={verifyCookie}>Verify Cookie</button>
-            <button onClick={createArticle}>Create Article</button>
-            <button onClick={listArticles(data)}>List Articles</button>
+            <button onClick={createCourse}>Create Courses</button>
+            <button onClick={listCourses(data)}>List Courses</button>
 
             <button onClick={deleteCookie}>Log out</button>
           </div>            

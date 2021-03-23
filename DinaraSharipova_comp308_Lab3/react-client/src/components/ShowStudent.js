@@ -5,10 +5,10 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
-function ShowUser(props) {
+function ShowStudent(props) {
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/users/" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/students/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
@@ -21,21 +21,21 @@ function ShowUser(props) {
     fetchData();
   }, []);
 
-  const editUser = (id) => {
+  const editStudent= (id) => {
     props.history.push({
       pathname: '/edit/' + id
     });
   };
 
-  const deleteUser = (id) => {
+  const deleteStudent = (id) => {
     setShowLoading(true);
-    const user = { firstName: data.firstName, lastName: data.lastName, 
+    const student = { firstName: data.firstName, lastName: data.lastName, 
       email: data.email,username: data.username, password: data.password };
   
-    axios.delete(apiUrl, user)
+    axios.delete(apiUrl, student)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/list')
+        props.history.push('/studentslist')
       }).catch((error) => setShowLoading(false));
   };
 
@@ -50,12 +50,12 @@ function ShowUser(props) {
         <p>User name: {data.username}</p>
 
         <p>
-          <Button type="button" variant="primary" onClick={() => { editUser(data._id) }}>Edit</Button>&nbsp;
-          <Button type="button" variant="danger" onClick={() => { deleteUser(data._id) }}>Delete</Button>
+          <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;
+          <Button type="button" variant="danger" onClick={() => { deleteStudent(data._id) }}>Delete</Button>
         </p>
       </Jumbotron>
     </div>
   );
 }
 
-export default withRouter(ShowUser);
+export default withRouter(ShowStudent);

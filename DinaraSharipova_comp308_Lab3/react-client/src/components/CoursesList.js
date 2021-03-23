@@ -5,11 +5,10 @@ import Spinner from 'react-bootstrap/Spinner';
 import { withRouter } from 'react-router-dom';
 import Login from './Login';
 
-function List(props) {
+function CourseList(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const [listError, setListError] = useState(false);
-  const apiUrl = "http://localhost:3000/users";
+  const apiUrl = "http://localhost:3000/api/courses";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,16 +16,15 @@ function List(props) {
         .then(result => {
           console.log('result.data:',result.data)
           //check if the user has logged in
-          if(result.data.screen !== 'auth')
-          {
+          //if(result.data.screen !== 'auth')
+          //{
             
             console.log('data in if:', result.data )
             setData(result.data);
             setShowLoading(false);
-          }
+          //}
         }).catch((error) => {
           console.log('error in fetchData:', error)
-          setListError(true)
         });
       };  
     fetchData();
@@ -34,7 +32,7 @@ function List(props) {
 
   const showDetail = (id) => {
     props.history.push({
-      pathname: '/show/' + id
+      pathname: '/showcourse/' + id
     });
   }
 
@@ -47,7 +45,7 @@ function List(props) {
           </Spinner> }
           <ListGroup>
             {data.map((item, idx) => (
-              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.username}</ListGroup.Item>
+              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.title}</ListGroup.Item>
             ))}
           </ListGroup>
         </div>
@@ -58,4 +56,4 @@ function List(props) {
   );
 }
 //
-export default withRouter(List);
+export default withRouter(CourseList);
