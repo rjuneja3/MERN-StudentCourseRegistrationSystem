@@ -1,11 +1,10 @@
 {
-  "name": "express-react-example",
-  "version": "0.0.0",
-  "description": "Express react Example",
+  "name": "DinaraSharipova_comp308_Lab3",
+  "version": "1",
+  "description": "COMP308: Dinara Sharipova and Rohan Juneja - Assignment 3",
   "main": "server.js",
   "author": {
-    "name": "inika",
-    "email": ""
+    "name": "Dinara Sharipova, Rohan Juneja"
   },
   "dependencies": {
     "bcrypt": "^4.0.0",

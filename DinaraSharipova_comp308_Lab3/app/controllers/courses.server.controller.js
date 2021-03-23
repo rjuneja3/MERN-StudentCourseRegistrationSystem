@@ -1,6 +1,8 @@
-﻿const mongoose = require('mongoose');
-const Article = mongoose.model('Article');
-const User = require('mongoose').model('User');
+﻿// NEEDS CHANGES!
+////////
+const mongoose = require('mongoose');
+const Course = mongoose.model('Course');
+const Student = require('mongoose').model('Student');
 
 //
 function getErrorMessage(err) {

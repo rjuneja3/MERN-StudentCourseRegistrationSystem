@@ -1,5 +1,8 @@
-﻿// Load the 'users' controller
-var users = require('../../app/controllers/users.server.controller');
+﻿// NEEDS CHANGES!
+////////
+
+// Load the 'users' controller
+var users = require('../../app/controllers/students.server.controller');
 var express = require('express');
 var router = express.Router();
 // Define the routes module' method
