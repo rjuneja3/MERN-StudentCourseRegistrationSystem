@@ -24,7 +24,7 @@ function ShowStudent(props) {
 
   const editStudent= (id) => {
     props.history.push({
-      pathname: '/edit/' + id
+      pathname: '/EditStudent/' + id
     });
   };
 
