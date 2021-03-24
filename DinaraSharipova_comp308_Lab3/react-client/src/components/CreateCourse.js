@@ -45,14 +45,15 @@ function CreateCourse(props) {
         } 
         <Jumbotron>
             <Form onSubmit={saveCourse}>
+            <Form.Group>
+                <Form.Label> Course Code:</Form.Label>
+                <Form.Control type="text" rows="3" name="courseCode" id="courseCode" placeholder="Enter code" value={course.courseCode} onChange={onChange} />
+              </Form.Group>
               <Form.Group>
                 <Form.Label> Course Name:</Form.Label>
-                <Form.Control type="text" name="courseName" id="courseName" placeholder="Enter title" value={course.courseName} onChange={onChange} />
+                <Form.Control type="text" name="courseName" id="courseName" placeholder="Enter name" value={course.courseName} onChange={onChange} />
               </Form.Group>
-              <Form.Group>
-                <Form.Label> Course Code:</Form.Label>
-                <Form.Control type="text" rows="3" name="courseCode" id="courseCode" placeholder="Enter Content" value={course.courseCode} onChange={onChange} />
-              </Form.Group>
+        
               <Form.Group>
                 <Form.Label> Section</Form.Label>
                 <Form.Control type="text" rows="3" name="section" id="section" placeholder="Enter section" value={course.section} onChange={onChange} />

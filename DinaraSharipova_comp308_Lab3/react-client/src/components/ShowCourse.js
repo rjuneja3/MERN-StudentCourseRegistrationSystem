@@ -32,7 +32,7 @@ function ShowCourse(props) {
 
   const dropCourse = (id) => {
     setShowLoading(true);
-    const student = { courseName: data.courseName, courseCode: data.courseCode, section: data.section, semester:data.semester };
+    const course = { courseName: data.courseName, courseCode: data.courseCode, section: data.section, semester:data.semester };
     //
     axios.delete(apiUrl, course)
       .then((result) => {

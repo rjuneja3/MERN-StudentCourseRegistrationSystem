@@ -5,6 +5,7 @@ const CourseSchema = new Schema({
         type: String,
         required: 'Course code is required',
         trim: true,
+        unique: true,
         default: '',
         min:3,
         max: 40
