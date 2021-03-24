@@ -34,9 +34,9 @@ function View (props) {
     }
   }
   //
-  const listCourses = (username) => {
+  const listCourses = (studentNumber) => {
 
-    console.log('in listCourses: ',username)
+    console.log('in listCourses: ',studentNumber)
     //setArticle('n')
 
   }

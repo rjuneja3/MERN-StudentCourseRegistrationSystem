@@ -9,17 +9,17 @@ import React, { useState } from 'react';
 //
 function CreateCourse(props) {
     //
-    const username = props.screen;
+    const studentNumber = props.screen;
     console.log('props.screen',props.screen)
-    const [course, setCourse] = useState({ _id: '', title: '', content: '', username: '' });
+    const [course, setCourse] = useState({ _id: '', courseName: '', courseCode: '', studentNumber: '' ,  semester: '', section: ''});
     const [showLoading, setShowLoading] = useState(false);
     //
-    const apiUrl = "http://localhost:3000/api/courses"
+    const apiUrl = "http://localhost:3000/courses"
     //
     const saveCourse = (e) => {
         setShowLoading(true);
         e.preventDefault();
-        const data = {title: course.title, content: course.content, username: username };
+        const data = {courseName: course.courseName, courseCode: course.courseCode, studentNumber: studentNumber , semester: course.semester, section:course.section };
         //
         axios.post(apiUrl, data)
         .then((result) => {
@@ -37,7 +37,7 @@ function CreateCourse(props) {
     
     return (
         <div>
-        <h2> Create a course {username} </h2>
+        <h2> Create a course {studentNumber} </h2>
         {showLoading && 
             <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
@@ -46,12 +46,20 @@ function CreateCourse(props) {
         <Jumbotron>
             <Form onSubmit={saveCourse}>
               <Form.Group>
-                <Form.Label> Title</Form.Label>
-                <Form.Control type="text" name="title" id="title" placeholder="Enter title" value={course.title} onChange={onChange} />
+                <Form.Label> Course Name:</Form.Label>
+                <Form.Control type="text" name="courseName" id="courseName" placeholder="Enter title" value={course.courseName} onChange={onChange} />
               </Form.Group>
               <Form.Group>
-                <Form.Label> Content</Form.Label>
-                <Form.Control as="textarea" rows="3" name="content" id="content" placeholder="Enter Content" value={course.content} onChange={onChange} />
+                <Form.Label> Course Code:</Form.Label>
+                <Form.Control type="text" rows="3" name="courseCode" id="courseCode" placeholder="Enter Content" value={course.courseCode} onChange={onChange} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Section</Form.Label>
+                <Form.Control type="text" rows="3" name="section" id="section" placeholder="Enter section" value={course.section} onChange={onChange} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label> Semester:</Form.Label>
+                <Form.Control type="number" rows="3" name="semester" id="semester" placeholder="Enter semester" value={course.semester} onChange={onChange} />
               </Form.Group>
                             
               <Button variant="primary" type="submit">

@@ -30,7 +30,7 @@ function ShowStudent(props) {
   const deleteStudent = (id) => {
     setShowLoading(true);
     const student = { firstName: data.firstName, lastName: data.lastName, 
-      email: data.email,username: data.username, password: data.password };
+      email: data.email,studentNumber: data.studentNumber, password: data.password };
   
     axios.delete(apiUrl, student)
       .then((result) => {
@@ -47,7 +47,7 @@ function ShowStudent(props) {
       <Jumbotron>
         <h1>Name: {data.firstName}, {data.lastName}</h1>
         <p>Email: {data.email}</p>
-        <p>User name: {data.username}</p>
+        <p>User name: {data.studentNumber}</p>
 
         <p>
           <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;

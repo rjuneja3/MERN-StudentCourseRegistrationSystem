@@ -9,7 +9,7 @@ function ShowCourse(props) {
   console.log('props.match.params',props.match.params.id)
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/students/" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/students/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
@@ -32,7 +32,7 @@ function ShowCourse(props) {
 
   const deleteStudent = (id) => {
     setShowLoading(true);
-    const student = { title: data.title, content: data.content };
+    const student = { courseName: data.courseName, courseCode: data.courseCode, section: data.section, semester:data.semester };
     //
     axios.delete(apiUrl, student)
       .then((result) => {
@@ -47,8 +47,8 @@ function ShowCourse(props) {
         <span className="sr-only">Loading...</span>
       </Spinner> }    
       <Jumbotron>
-        <h1>Title: {data.title}</h1>
-        <p>Content: {data.content}</p>
+        <h1>Course Name: {data.courseName}</h1>
+        <p>Course Code: {data.courseCode}</p>
 
         <p>
           <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;

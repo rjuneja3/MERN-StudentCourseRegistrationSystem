@@ -11,17 +11,17 @@ function App() {
   //state variable for the screen, admin or user
   const [screen, setScreen] = useState('auth');
   //store input field data, user name and password
-  const [username, setUsername] = useState();
+  const [studentNumber, setStudentNumber] = useState();
   const [password, setPassword] = useState();
   const apiUrl = "http://localhost:3000/signin";
-  //send username and password to the server
+  //send studentNumber and password to the server
   // for initial authentication
   const auth = async () => {
     console.log('calling auth')
-    console.log(username)
+    console.log(studentNumber)
     try {
       //make a get request to /authenticate end-point on the server
-      const loginData = { auth: { username, password } }
+      const loginData = { auth: { studentNumber, password } }
       //call api
       const res = await axios.post(apiUrl, loginData);
       console.log(res.data.auth)
@@ -64,9 +64,9 @@ function App() {
     <div className="App">
       {screen === 'auth' 
         ? <div>
-          <label>Username: </label>
+          <label>Student Number: </label>
           <br/>
-          <input type="text" onChange={e => setUsername(e.target.value)} />
+          <input type="text" onChange={e => setStudentNumber(e.target.value)} />
           <br/>
           <label>Password: </label>
           <br/>

@@ -19,7 +19,7 @@ var StudentSchema = new Schema({
 		type: Number,
 		required: 'Student Number is required',
 		unique: true,
-		max: 15,
+		max: 10000000,
 		trim: true
 	},
 	email: {
@@ -31,7 +31,7 @@ var StudentSchema = new Schema({
 	},
 	password: {
 		type: String,
-		unique: true,
+		required: 'Password is required',
 		validate: [
 			(password) => password && password.length > 6,
 			'Password should be longer'
@@ -50,8 +50,8 @@ var StudentSchema = new Schema({
 	phoneNumber:{
 		type: Number,
 		required: 'Phone Number is required',
-		max: 12,
-		min:9
+		max: 10000000000,
+		min:1000000000
 	},
 	program:{
 		type: String,

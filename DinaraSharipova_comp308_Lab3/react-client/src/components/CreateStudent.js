@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 function CreateStudent(props) {
   const [student, setStudent] = useState({ _id: '', firstName: '', lastName: '', 
-                email: '',username: '',password: '' });
+                email: '',studentNumber: '',password: '' , city: '', address: '', phoneNumber:'', program: '' });
   const [showLoading, setShowLoading] = useState(false);
   const apiUrl = "http://localhost:3000/";
 
@@ -16,11 +16,11 @@ function CreateStudent(props) {
     setShowLoading(true);
     e.preventDefault();
     const data = { firstName: student.firstName, lastName: student.lastName, 
-      email: student.email,username: student.username, password: student.password };
+      email: student.email,studentNumber: student.studentNumber, password: student.password ,  program:student.program, phoneNumber:student.phoneNumber, address:student.address, city:student.city};
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/showstudent/' + result.data._id)
+        props.history.push('/showstudent/' + result.data.studentNumber)
       }).catch((error) => setShowLoading(false));
   };
 
@@ -51,14 +51,30 @@ function CreateStudent(props) {
             <Form.Control type="text" name="email" id="email" rows="3" placeholder="Enter email" value={student.email} onChange={onChange} />
           </Form.Group>
           <Form.Group>
-            <Form.Label>User Name</Form.Label>
-            <Form.Control type="text" name="username" id="username" placeholder="Enter user name" value={student.username} onChange={onChange} />
+            <Form.Label>Student Number::</Form.Label>
+            <Form.Control type="text" name="studentNumber" id="studentNumber" placeholder="Enter Student Number" value={student.studentNumber} onChange={onChange} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control type="text" name="password" id="password" placeholder="Enter password" value={student.password} onChange={onChange} />
           </Form.Group>
-          
+          <Form.Group>
+          <Form.Label>PRogram</Form.Label>
+          <Form.Control type="text" name="program" id="program" placeholder="Enter program" value={student.program} onChange={onChange} />
+        </Form.Group>
+        <Form.Group>
+        <Form.Label>Phone Number</Form.Label>
+        <Form.Control type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter phoneNumber:" value={student.phoneNumber} onChange={onChange} />
+      </Form.Group>
+      <Form.Group>
+      <Form.Label>Address</Form.Label>
+      <Form.Control type="text" name="address" id="address" placeholder="Enter address:" value={student.address} onChange={onChange} />
+    </Form.Group>
+    <Form.Group>
+    <Form.Label>City</Form.Label>
+    <Form.Control type="text" name="city" id="city" placeholder="Enter City" value={student.city} onChange={onChange} />
+  </Form.Group>
+
           <Button variant="primary" type="submit">
             Save
           </Button>

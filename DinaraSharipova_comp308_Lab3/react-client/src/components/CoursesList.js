@@ -8,7 +8,7 @@ import Login from './Login';
 function CourseList(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/api/courses";
+  const apiUrl = "http://localhost:3000/courses";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +45,7 @@ function CourseList(props) {
           </Spinner> }
           <ListGroup>
             {data.map((item, idx) => (
-              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.title}</ListGroup.Item>
+              <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>{item.courseName}</ListGroup.Item>
             ))}
           </ListGroup>
         </div>
