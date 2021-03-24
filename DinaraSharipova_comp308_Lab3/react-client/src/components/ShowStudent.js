@@ -47,7 +47,7 @@ function ShowStudent(props) {
       <Jumbotron>
         <h1>Name: {data.firstName}, {data.lastName}</h1>
         <p>Email: {data.email}</p>
-        <p>User name: {data.studentNumber}</p>
+        <p>Student Number: {data.studentNumber}</p>
 
         <p>
           <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;

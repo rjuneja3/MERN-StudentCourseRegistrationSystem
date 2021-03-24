@@ -38,6 +38,7 @@ function View (props) {
 
     console.log('in listCourses: ',studentNumber)
     //setArticle('n')
+    //we don't have anything here lol
 
   }
   //
