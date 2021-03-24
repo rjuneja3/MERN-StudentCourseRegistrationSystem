@@ -69,7 +69,9 @@ exports.read = function(req, res) {
 };
 //
 // 'StudentByID' controller method to find a user by its id
-exports.StudentByNumber = function (req, res, next, stud_number) {
+exports.StudentByNumber = function (req, res, next) {
+	var stud_number = req.params.studentNumber;
+	console.log("Controller: " + req.params.studentNumber);
 	// Use the 'User' static 'findOne' method to retrieve a specific user
 	Student.findOne({
         studentNumber: stud_number

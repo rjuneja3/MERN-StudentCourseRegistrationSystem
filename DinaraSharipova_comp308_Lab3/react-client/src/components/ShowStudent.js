@@ -15,13 +15,15 @@ console.log(studentNumber);
     setShowLoading(false);
     const fetchData = async () => {
       const result = await axios(apiUrl);
+      console.log('results from students: ',result.data);
       setData(result.data);
       setShowLoading(false);
     };
 
     fetchData();
   }, []);
-
+  console.log("DATA" + data.firstName);
+  
   const editStudent= (id) => {
     props.history.push({
       pathname: '/EditStudent/' + id
