@@ -4,16 +4,24 @@ const students = require('../../app/controllers/students.server.controller');
 const courses = require('../../app/controllers/courses.server.controller');
 //
 module.exports = function (app) {
-        app.route('/api/articles')
-            .get(articles.list)
-            .post(users.requiresLogin, articles.create);
+        app.route('/courses')
+            .get(courses.list)
+            .post(students.requiresLogin, courses.create);
         //
-        app.route('/api/articles/:articleId')
-            .get(articles.read)
-            .put(users.requiresLogin, articles.hasAuthorization, articles.
+        app.route('/courses/:courseId')
+            .get(courses.read)
+            .put(students.requiresLogin, courses.hasAuthorization, courses.
                 update)
-            .delete(users.requiresLogin, articles.hasAuthorization, articles.
+            .delete(students.requiresLogin, courses.hasAuthorization, courses.
                 delete);
         //
-        app.param('articleId', articles.articleByID);
+        app.param('courseId', courses.coursesByID);
+
+        app.route('/courses_by_student/:studentNumber').get(courses.read); // Courses taken by a student
+        app.param('studentNumber',courses.coursesByStudent);
+        
+        app.route('/courses_all_students/:courseCode').get(courses.read); // All students of the course
+        app.param('courseCode', courses.courseAllStudents);
+
+      
 };

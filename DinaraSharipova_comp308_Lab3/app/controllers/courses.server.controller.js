@@ -1,5 +1,4 @@
-﻿// ADD more methods for filtering
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 const Course = mongoose.model('Course');
 const Student = require('mongoose').model('Student');
 
@@ -51,7 +50,7 @@ exports.create = function (req, res) {
     });
 };
 
-
+// LIST ALL COURSES
 exports.list = function (req, res) {
     Course.find().sort('-created').populate('studentEntity', 'firstName lastName fullName').exec((err, courses) => {
 if (err) {
@@ -63,7 +62,7 @@ if (err) {
     }
 });
 };
-//
+//FOR A SEPARATE PAGE OF THE COURSE
 exports.courseByID = function (req, res, next, id) {
     Cpurse.findById(id).populate('studentEntity', 'firstName lastName fullName').exec((err, course) => {if (err) return next(err);
     if (!course) return next(new Error('Failed to load course '
@@ -73,7 +72,59 @@ exports.courseByID = function (req, res, next, id) {
         next();
     });
 };
-//
+// FIND COURSE BY ITS UNIQUE CODE
+exports.courseByCode = function (req, res, next) {
+    var coureCode = req.params.courseCode;
+    Course.findOne({ courseCode: coureCode }, (err, course) => {
+      if (!course) { return next(new Error("Failed to load course"));
+      } else {
+        req.course = course;
+        console.log('in courseByCode:', req.course)
+        next();
+      }
+    });
+  };
+
+// LIST COURSES BY A STUDENT
+exports.coursesByStudent = function (req, res) {
+    var studentEntity = new Student();
+    Student.findOne(
+      { studentNumber: req.params.studentNumber },
+      (err, student) => {
+        studentEntity._id = student._id;
+      }
+    ).then(function () {
+      Course.find({ studentEntity: studentEntity._id })
+        .populate("studentEntity")
+        .exec((err, courses) => {
+          if (err) {
+            return res.status(400).send({
+              message: getErrorMessage(err),
+            });
+          } else {
+            res.status(200).json(courses);
+          }
+        });
+    });
+  };
+
+// LIST ALL STUDENTS IN A COURSE
+exports.courseAllStudents = function (req, res) {
+    var courseCode = req.params.courseCode;
+    Course.find({ courseCode: courseCode })
+      .populate("studentEntity")
+      .exec((err, students) => {
+        if (err) {
+          return res.status(400).send({
+            message: getErrorMessage(err),
+          });
+        } else {
+          res.status(200).json(students);
+        }
+      });
+  };
+  
+
 exports.read = function (req, res) {
     res.status(200).json(req.course);
 };

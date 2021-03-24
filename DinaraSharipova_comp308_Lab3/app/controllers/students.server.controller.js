@@ -35,11 +35,9 @@ const getErrorMessage = function(err) {
 };
 // Create a new user
 exports.create = function (req, res, next) {
-    // Create a new instance of the 'User' Mongoose model
-    var student = new Student(req.body); //get data from React form
-    console.log("body: " + req.body.studentNumber);
-
-    // Use the 'User' instance's 'save' method to save a new user document
+    
+    var student = new Student(req.body); /
+    //console.log("body: " + req.body.studentNumber);
     student.save(function (err) {
         if (err) {
             // Call the next middleware with an error message
@@ -52,7 +50,7 @@ exports.create = function (req, res, next) {
     });
 };
 //
-// Returns all users
+// LIST ALL STUDENTS
 exports.list = function (req, res, next) {
     // Use the 'User' instance's 'find' method to retrieve a new user document
     Student.find({}, function (err, students) {
@@ -71,10 +69,10 @@ exports.read = function(req, res) {
 };
 //
 // 'StudentByID' controller method to find a user by its id
-exports.StudentByID = function (req, res, next, id) {
+exports.StudentByNumber = function (req, res, next, stud_number) {
 	// Use the 'User' static 'findOne' method to retrieve a specific user
 	Student.findOne({
-        _id: id
+        studentNumber: stud_number
 	}, (err, student) => {
 		if (err) {
 			// Call the next middleware with an error message
@@ -91,7 +89,7 @@ exports.StudentByID = function (req, res, next, id) {
 //update a user by id
 exports.update = function(req, res, next) {
     console.log(req.body);
-    Student.findByIdAndUpdate(req.student.id, req.body, function (err, student) {
+    Student.findByIdAndUpdate({studentNumber: req.student.studentNumber}, req.body, function (err, student) {
       if (err) {
         console.log(err);
         return next(err);
@@ -101,7 +99,7 @@ exports.update = function(req, res, next) {
 };
 // delete a student by id
 exports.delete = function(req, res, next) {
-    Student.findByIdAndRemove(req.student.id, req.body, function (err, student) {
+    Student.findByIdAndRemove({studentNumber: req.student.studentNumber}, req.body, function (err, student) {
       if (err) return next(err);
       res.json(student);
     });
