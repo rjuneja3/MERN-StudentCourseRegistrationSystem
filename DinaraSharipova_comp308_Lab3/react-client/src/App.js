@@ -35,6 +35,7 @@ function App() {
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/StudentsList">Students List</Nav.Link>
             <Nav.Link href="/CoursesList">Courses List</Nav.Link>
+            <Nav.Link href="/ShowStudent">Profile</Nav.Link>
             <Nav.Link href="/create">Sign Up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -44,6 +45,7 @@ function App() {
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Login />} path="/login" />
           <Route render ={()=> < StudentsList />} path="/StudentsList" />
+          <Route render ={()=> < ShowStudent />} path="/ShowStudent" />
           <Route render ={()=> < CoursesList />} path="/CoursesList" />
           <Route render ={()=> < EditStudent />} path="/edit/:id" />
           <Route render ={()=> < CreateStudent />} path="/create" />

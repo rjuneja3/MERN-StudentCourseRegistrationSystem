@@ -6,9 +6,10 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function ShowStudent(props) {
+  const studentNumber = props.screen;
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/students/" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/students/" + studentNumber;
 
   useEffect(() => {
     setShowLoading(false);
