@@ -36,7 +36,7 @@ const getErrorMessage = function(err) {
 // Create a new user
 exports.create = function (req, res, next) {
     
-    var student = new Student(req.body); /
+    var student = new Student(req.body); 
     //console.log("body: " + req.body.studentNumber);
     student.save(function (err) {
         if (err) {

@@ -1,4 +1,4 @@
-import CreateArticle from './CreateArticle';
+import CreateCourse from './CreateCourse';
 import React, { useState } from 'react';
 //
 import axios from 'axios';
@@ -9,7 +9,7 @@ function View (props) {
   // return a stateful value and funcion to update it
   const [data, setData] = useState();
   //
-  const [article, setArticle] = useState('');
+  const [course, setCourse] = useState('');
   // called when user clicks on Logout button
   // to clear the cookie and set the screen state variable 
   // back to its initial state.
@@ -49,7 +49,7 @@ function View (props) {
   //
   return (
     <div className="App">
-      {article !== 'y'
+      {course !== 'y'
         ? <div>
             <p>{screen}</p>
             <p>{data}</p>
@@ -59,7 +59,7 @@ function View (props) {
 
             <button onClick={deleteCookie}>Log out</button>
           </div>            
-        : <CreateArticle screen={screen} setScreen={setScreen} />
+        : <CreateCourse screen={screen} setScreen={setScreen} />
       }
     </div>
   );

@@ -63,15 +63,16 @@ if (err) {
 });
 };
 //FOR A SEPARATE PAGE OF THE COURSE
-exports.courseByID = function (req, res, next, id) {
-    Cpurse.findById(id).populate('studentEntity', 'firstName lastName fullName').exec((err, course) => {if (err) return next(err);
-    if (!course) return next(new Error('Failed to load course '
-            + id));
-        req.course = course;
-        console.log('in courseById:', req.course)
-        next();
+exports.courseByID = function (req, res, next) {
+    var id = req.params.courseId;
+    Course.findById(id).exec((err, course) => {
+      if (err) return next(err);
+      if (!course) return next(new Error("Failed to load course " + id));
+      req.course = course;
+      console.log("in courseId:", req.course);
+      next();
     });
-};
+  };
 // FIND COURSE BY ITS UNIQUE CODE
 exports.courseByCode = function (req, res, next) {
     var coureCode = req.params.courseCode;

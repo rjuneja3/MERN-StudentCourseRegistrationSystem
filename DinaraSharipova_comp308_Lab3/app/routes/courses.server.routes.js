@@ -8,6 +8,7 @@ module.exports = function (app) {
             .get(courses.list)
             .post(students.requiresLogin, courses.create);
         //
+        
         app.route('/courses/:courseId')
             .get(courses.read)
             .put(students.requiresLogin, courses.hasAuthorization, courses.
@@ -15,7 +16,7 @@ module.exports = function (app) {
             .delete(students.requiresLogin, courses.hasAuthorization, courses.
                 delete);
         //
-        app.param('courseId', courses.coursesByID);
+        app.param('courseId', courses.courseByID);
 
         app.route('/courses_by_student/:studentNumber').get(courses.read); // Courses taken by a student
         app.param('studentNumber',courses.coursesByStudent);
