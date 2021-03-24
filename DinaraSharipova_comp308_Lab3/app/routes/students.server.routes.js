@@ -12,7 +12,7 @@ module.exports = function (app) {
     .put(students.update)
     .delete(students.delete)
 
-    app.param('studentNumber', students.StudentByNumber);
+    app.param('studentNumber', students.studentByNumber);
     //authenticate user
     app.post('/signin', students.authenticate);
     app.get('/signout', students.signout);

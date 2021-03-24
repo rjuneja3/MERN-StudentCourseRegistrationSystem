@@ -69,20 +69,19 @@ exports.read = function(req, res) {
 };
 //
 // 'StudentByID' controller method to find a user by its id
-exports.StudentByNumber = function (req, res, next) {
-	var stud_number = req.params.studentNumber;
-	console.log("Controller: " + req.params.studentNumber);
-	// Use the 'User' static 'findOne' method to retrieve a specific user
+exports.studentByNumber = function (req, res, next, id) {
+	console.log("Is it running?");
+	// Use the 'student' static 'findOne' method to retrieve a specific student
 	Student.findOne({
-        studentNumber: stud_number
+        studentNumber: id
 	}, (err, student) => {
 		if (err) {
 			// Call the next middleware with an error message
 			return next(err);
 		} else {
-			// Set the 'req.user' property
+			// Set the 'req.student' property
             req.student = student;
-            console.log(student);
+            console.log("Student list "+ student);
 			// Call the next middleware
 			next();
 		}

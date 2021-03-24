@@ -20,6 +20,7 @@ function CreateStudent(props) {
     axios.post(apiUrl, data)
       .then((result) => {
         setShowLoading(false);
+        console.log('results from create student:',result.data)
         props.history.push('/showstudent/' + result.data.studentNumber)
       }).catch((error) => setShowLoading(false));
   };

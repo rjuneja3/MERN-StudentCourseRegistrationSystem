@@ -33,9 +33,9 @@ function App() {
           <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/StudentsList">Students List</Nav.Link>
+            <Nav.Link href="/studentslist">Students List</Nav.Link>
             <Nav.Link href="/CoursesList">Courses List</Nav.Link>
-            <Nav.Link href="/ShowStudent">Profile</Nav.Link>
+            
             <Nav.Link href="/create">Sign Up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -44,12 +44,12 @@ function App() {
       <div>          
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Login />} path="/login" />
-          <Route render ={()=> < StudentsList />} path="/StudentsList" />
-          <Route render ={()=> < ShowStudent />} path="/ShowStudent/:studentNumber" />
+          <Route render ={()=> < StudentsList />} path="/studentslist" />
+          <Route render ={()=> < ShowStudent />} path="/studentprofile/:studentNumber" />
           <Route render ={()=> < CoursesList />} path="/CoursesList" />
-          <Route render ={()=> < EditStudent />} path="/edit/:studentNumber" />
+          <Route render ={()=> < EditStudent />} path="/editstudent/:studentNumber" />
           <Route render ={()=> < CreateStudent />} path="/create" />
-          <Route render ={()=> < ShowStudent />} path="/show/:id" />
+      
           <Route render ={()=> < ShowCourse />} path="/ShowCourse/:id" />
           <Route render ={()=> < EditCourse />} path="/EditCourse/:id" />
 

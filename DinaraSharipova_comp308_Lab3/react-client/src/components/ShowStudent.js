@@ -1,66 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Spinner from 'react-bootstrap/Spinner';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Button from 'react-bootstrap/Button';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Spinner from "react-bootstrap/Spinner";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { withRouter } from "react-router-dom";
 
 function ShowStudent(props) {
   const studentNumber = props.match.params.studentNumber;
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/students/" + studentNumber;
-console.log(studentNumber);
+
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
       const result = await axios(apiUrl);
-      console.log('results from students: ',result.data);
       setData(result.data);
       setShowLoading(false);
     };
 
     fetchData();
   }, []);
-  console.log("DATA" + data.firstName);
-  
-  const editStudent= (id) => {
+
+  const editUser = (id) => {
     props.history.push({
-      pathname: '/EditStudent/' + id
+      pathname: "/editstudent/" + id,
     });
   };
 
-  const deleteStudent = (id) => {
+  const deleteUser = (id) => {
     setShowLoading(true);
-    const student = { firstName: data.firstName, lastName: data.lastName, 
-      email: data.email,studentNumber: data.studentNumber, password: data.password };
-  
-    axios.delete(apiUrl, student)
+    const user = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      studentNumber: data.studentNumber,
+      password: data.password,
+      phone: data.phone,
+      address: data.address,
+      city: data.city,
+      program: data.program,
+    };
+
+    axios
+      .delete(apiUrl, user)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/studentslist')
-      }).catch((error) => setShowLoading(false));
+        props.history.push("/listOfStudents");
+      })
+      .catch((error) => setShowLoading(false));
   };
 
   return (
     <div>
-      {showLoading && <Spinner animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner> }    
+      {showLoading && (
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      )}
       <Jumbotron>
-        <h1>Name: {data.firstName}, {data.lastName}</h1>
-        <p>Email: {data.email}</p>
-        <p>Student Number: {data.studentNumber}</p>
-        <p>Email: {data.email}</p>
-        <p>Phone Number: {data.phone}</p>
-        <p>Address: {data.address}</p>
-        <p>City: {data.city}</p>
-        <p>Program: {data.program}</p>
-        <p>
-          <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;
-          <Button type="button" variant="danger" onClick={() => { deleteStudent(data._id) }}>Delete</Button>
-        </p>
+        <h1>
+          Profile : {data.firstName}, {data.lastName}
+        </h1>
       </Jumbotron>
+      <Card>
+        <Card.Body>
+        <Card.Title>Student Number: {data.studentNumber}</Card.Title>
+        <Card.Text>Email: {data.email}</Card.Text>
+        <Card.Text>Phone Number: {data.phone}</Card.Text>
+        <Card.Text>Address: {data.address}</Card.Text>
+        <Card.Text>City: {data.city}</Card.Text>
+        <Card.Text>Program: {data.program}</Card.Text>
+
+        <p>
+          <Button
+            type="button"
+            variant="primary"
+            onClick={() => {
+              editUser(data.studentNumber);
+            }}
+          >
+            Update Profile
+          </Button>
+              
+          {/* <Button type="button" variant="danger" onClick={() => { deleteUser(data.studentNumber) }}>Delete</Button> */}
+        </p>
+        </Card.Body>
+      </Card>
+      <Button className="mt-2 btn-secondary" href="/login">
+        Go Back
+      </Button>
     </div>
   );
 }
