@@ -65,6 +65,7 @@ exports.list = function (req, res, next) {
 //'read' controller method to display a user
 exports.read = function(req, res) {
 	// Use the 'response' object to send a JSON response
+	console.log("read STUDENT");
 	res.json(req.student);
 };
 //

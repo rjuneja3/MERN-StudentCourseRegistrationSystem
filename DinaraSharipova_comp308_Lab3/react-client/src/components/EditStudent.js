@@ -10,7 +10,8 @@ function EditStudent(props) {
   const [student, setStudent] = useState({ _id: '', firstName: '', lastName: '', 
   email: '',studentNumber: '',password: '' });  
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/students/" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/students/" + props.match.params.studentNumber;
+  console.log("EDIT NUMBER: " + props.match.params.studentNumber);
   //runs only once after the first render
   useEffect(() => {
     setShowLoading(false);

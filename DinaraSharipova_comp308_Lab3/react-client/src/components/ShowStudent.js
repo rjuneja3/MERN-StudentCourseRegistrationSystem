@@ -8,7 +8,7 @@ import { withRouter } from "react-router-dom";
 
 function ShowStudent(props) {
   const studentNumber = props.match.params.studentNumber;
-  const [data, setData] = useState({});
+  const [student, setStudent] = useState({});
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/students/" + studentNumber;
 
@@ -16,35 +16,35 @@ function ShowStudent(props) {
     setShowLoading(false);
     const fetchData = async () => {
       const result = await axios(apiUrl);
-      setData(result.data);
+      setStudent(result.data);
       setShowLoading(false);
     };
 
     fetchData();
   }, []);
 
-  const editUser = (id) => {
+  const editUser = (studentNumber) => {
     props.history.push({
-      pathname: "/editstudent/" + id,
+      pathname: "/editstudent/" + studentNumber,
     });
   };
 
   const deleteUser = (id) => {
     setShowLoading(true);
-    const user = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      studentNumber: data.studentNumber,
-      password: data.password,
-      phone: data.phone,
-      address: data.address,
-      city: data.city,
-      program: data.program,
+    const Student = {
+      firstName: student.firstName,
+      lastName: student.lastName,
+      email: student.email,
+      studentNumber: student.studentNumber,
+      password: student.password,
+      phone: student.phone,
+      address: student.address,
+      city: student.city,
+      program: student.program,
     };
 
     axios
-      .delete(apiUrl, user)
+      .delete(apiUrl, student)
       .then((result) => {
         setShowLoading(false);
         props.history.push("/listOfStudents");
@@ -61,24 +61,24 @@ function ShowStudent(props) {
       )}
       <Jumbotron>
         <h1>
-          Profile : {data.firstName}, {data.lastName}
+          Profile : {student.firstName}, {student.lastName}
         </h1>
       </Jumbotron>
       <Card>
         <Card.Body>
-        <Card.Title>Student Number: {data.studentNumber}</Card.Title>
-        <Card.Text>Email: {data.email}</Card.Text>
-        <Card.Text>Phone Number: {data.phone}</Card.Text>
-        <Card.Text>Address: {data.address}</Card.Text>
-        <Card.Text>City: {data.city}</Card.Text>
-        <Card.Text>Program: {data.program}</Card.Text>
+        <Card.Title>Student Number: {student.studentNumber}</Card.Title>
+        <Card.Text>Email: {student.email}</Card.Text>
+        <Card.Text>Phone Number: {student.phone}</Card.Text>
+        <Card.Text>Address: {student.address}</Card.Text>
+        <Card.Text>City: {student.city}</Card.Text>
+        <Card.Text>Program: {student.program}</Card.Text>
 
         <p>
           <Button
             type="button"
             variant="primary"
             onClick={() => {
-              editUser(data.studentNumber);
+              editUser(studentNumber);
             }}
           >
             Update Profile
@@ -96,3 +96,4 @@ function ShowStudent(props) {
 }
 
 export default withRouter(ShowStudent);
+
