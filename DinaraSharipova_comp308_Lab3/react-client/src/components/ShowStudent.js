@@ -6,11 +6,11 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function ShowStudent(props) {
-  const studentNumber = props.screen;
+  const studentNumber = props.match.params.studentNumber;
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/students/" + studentNumber;
-
+console.log(studentNumber);
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
@@ -49,7 +49,11 @@ function ShowStudent(props) {
         <h1>Name: {data.firstName}, {data.lastName}</h1>
         <p>Email: {data.email}</p>
         <p>Student Number: {data.studentNumber}</p>
-
+        <p>Email: {data.email}</p>
+        <p>Phone Number: {data.phone}</p>
+        <p>Address: {data.address}</p>
+        <p>City: {data.city}</p>
+        <p>Program: {data.program}</p>
         <p>
           <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;
           <Button type="button" variant="danger" onClick={() => { deleteStudent(data._id) }}>Delete</Button>

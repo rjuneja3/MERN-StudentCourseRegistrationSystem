@@ -45,9 +45,9 @@ function App() {
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Login />} path="/login" />
           <Route render ={()=> < StudentsList />} path="/StudentsList" />
-          <Route render ={()=> < ShowStudent />} path="/ShowStudent" />
+          <Route render ={()=> < ShowStudent />} path="/ShowStudent/:studentNumber" />
           <Route render ={()=> < CoursesList />} path="/CoursesList" />
-          <Route render ={()=> < EditStudent />} path="/edit/:id" />
+          <Route render ={()=> < EditStudent />} path="/edit/:studentNumber" />
           <Route render ={()=> < CreateStudent />} path="/create" />
           <Route render ={()=> < ShowStudent />} path="/show/:id" />
           <Route render ={()=> < ShowCourse />} path="/ShowCourse/:id" />

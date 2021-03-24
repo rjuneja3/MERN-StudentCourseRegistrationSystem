@@ -53,10 +53,10 @@ function View (props) {
       {course !== 'y'
         ? <div>
             <p>{screen}</p>
-            <p>{data}</p>
+       
             <button onClick={verifyCookie}>Verify Cookie</button>
             <button onClick={createCourse}>Create Courses</button>
-            <button onClick={listCourses(data)}>List Courses</button>
+            <button onClick={listCourses}>List Courses</button>
 
             <button onClick={deleteCookie}>Log out</button>
           </div>            
