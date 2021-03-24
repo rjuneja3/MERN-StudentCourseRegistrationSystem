@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { withRouter } from 'react-router-dom';
 
 function EditCourse(props) {
-  console.log('edituser props:',props.match.params)
+  console.log('editcourse props:',props.match.params)
   const [course, setCourse] = useState({ _id: '', courseName: '', 
   courseCode: '' });  
   const [showLoading, setShowLoading] = useState(true);

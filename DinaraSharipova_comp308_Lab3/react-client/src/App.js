@@ -11,6 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './App.css';
 //
+import CoursesList from './components/CoursesList';
 import StudentsList from './components/StudentsList';
 import EditStudent from './components/EditStudent';
 import EditCourse from './components/EditCourse';
@@ -32,7 +33,8 @@ function App() {
           <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/StudentsList">StudentsList of Users</Nav.Link>
+            <Nav.Link href="/StudentsList">Students List</Nav.Link>
+            <Nav.Link href="/CoursesList">Courses List</Nav.Link>
             <Nav.Link href="/create">Sign Up</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -42,6 +44,7 @@ function App() {
           <Route render ={()=> < Home />} path="/home" />
           <Route render ={()=> < Login />} path="/login" />
           <Route render ={()=> < StudentsList />} path="/StudentsList" />
+          <Route render ={()=> < CoursesList />} path="/CoursesList" />
           <Route render ={()=> < EditStudent />} path="/edit/:id" />
           <Route render ={()=> < CreateStudent />} path="/create" />
           <Route render ={()=> < ShowStudent />} path="/show/:id" />

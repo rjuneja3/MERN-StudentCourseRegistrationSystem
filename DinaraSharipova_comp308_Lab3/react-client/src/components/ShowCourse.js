@@ -9,13 +9,13 @@ function ShowCourse(props) {
   console.log('props.match.params',props.match.params.id)
   const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
-  const apiUrl = "http://localhost:3000/students/" + props.match.params.id;
+  const apiUrl = "http://localhost:3000/courses/" + props.match.params.id;
 
   useEffect(() => {
     setShowLoading(false);
     const fetchData = async () => {
       const result = await axios(apiUrl);
-      console.log('results from students',result.data);
+      console.log('results from courses',result.data);
 
       setData(result.data);
       setShowLoading(false);
@@ -24,20 +24,20 @@ function ShowCourse(props) {
     fetchData();
   }, []);
 
-  const editStudent = (id) => {
+  const editCourse = (id) => {
     props.history.push({
-      pathname: '/editstudent/' + id
+      pathname: '/editcourse/' + id
     });
   };
 
-  const deleteStudent = (id) => {
+  const dropCourse = (id) => {
     setShowLoading(true);
     const student = { courseName: data.courseName, courseCode: data.courseCode, section: data.section, semester:data.semester };
     //
-    axios.delete(apiUrl, student)
+    axios.delete(apiUrl, course)
       .then((result) => {
         setShowLoading(false);
-        props.history.push('/liststudents')
+        props.history.push('/listcourses')
       }).catch((error) => setShowLoading(false));
   };
 
@@ -51,8 +51,8 @@ function ShowCourse(props) {
         <p>Course Code: {data.courseCode}</p>
 
         <p>
-          <Button type="button" variant="primary" onClick={() => { editStudent(data._id) }}>Edit</Button>&nbsp;
-          <Button type="button" variant="danger" onClick={() => { deleteStudent(data._id) }}>Delete</Button>
+          <Button type="button" variant="primary" onClick={() => { editCourse(data._id) }}>Edit</Button>&nbsp;
+          <Button type="button" variant="danger" onClick={() => { dropCourse(data._id) }}>Delete</Button>
         </p>
       </Jumbotron>
     </div>
