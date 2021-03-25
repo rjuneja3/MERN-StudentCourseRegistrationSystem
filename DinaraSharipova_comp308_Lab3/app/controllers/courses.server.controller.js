@@ -163,15 +163,15 @@ exports.delete = function (req, res) {
 //The hasAuthorization() middleware uses the req.article and req.user objects
 //to verify that the current user is the creator of the current article
 exports.hasAuthorization = function (req, res, next) {
-    console.log('in hasAuthorization - creator: ',req.student.studentEntity)
-    console.log('in hasAuthorization - user: ',req.id)
+    console.log('in hasAuthorization - studentEntity: ',req.course.studentEntity)
+    console.log('in hasAuthorization - student: ',req.id)
     //console.log('in hasAuthorization - user: ',req.user._id)
 
 
-    if (req.course.studentEntity.id !== req.id) {
-        return res.status(403).send({
-            message: 'Student is not authorized'
-        });
-    }
+    // if (req.course.studentEntity !== req.id) {
+    //     return res.status(403).send({
+    //         message: 'Student is not authorized'
+    //     });
+    // }
     next();
 };

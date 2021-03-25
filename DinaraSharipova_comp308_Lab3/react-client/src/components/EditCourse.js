@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 function EditCourse(props) {
   console.log('editcourse props:',props.match.params)
   const [course, setCourse] = useState({ _id: '', courseName: '', 
-  courseCode: '' });  
+  courseCode: '' , section: '', semester: ''});  
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/courses/" + props.match.params.id;
   //runs only once after the first render
@@ -29,7 +29,7 @@ function EditCourse(props) {
   const updateCourse = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { courseName: course.courseName, courseCode: course.courseCode};
+    const data = { courseName: course.courseName, courseCode: course.courseCode, semester: course.semester, section: course.section};
     axios.put(apiUrl, data)
       .then((result) => {
         console.log('after calling put to update',result.data )
@@ -59,6 +59,14 @@ function EditCourse(props) {
           <Form.Group>
             <Form.Label> Course Code:</Form.Label>
             <Form.Control type="text" name="courseCode" id="courseCode" placeholder="Enter course courseCode" value={course.courseCode} onChange={onChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label> Section:</Form.Label>
+            <Form.Control type="text" name="section" id="section" placeholder="Enter section" value={course.section} onChange={onChange} />
+            </Form.Group>
+          <Form.Group>
+            <Form.Label> Semester:</Form.Label>
+            <Form.Control type="text" name="semester" id="semester" placeholder="Enter semester" value={course.semester} onChange={onChange} />
           </Form.Group>
           
           
