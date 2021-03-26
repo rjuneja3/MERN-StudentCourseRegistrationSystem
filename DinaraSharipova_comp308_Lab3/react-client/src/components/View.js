@@ -60,8 +60,8 @@ function View(props) {
       ):(
         <div>
           <Jumbotron>
-            <h2>Welcome, {student.firstName} {student.lastName}</h2>
-            <p>{screen}</p>
+            <h2>Welcome to Student Panel</h2>
+            <p>Your Student Number is: {screen}</p>
           </Jumbotron>
           
           <ButtonGroup>

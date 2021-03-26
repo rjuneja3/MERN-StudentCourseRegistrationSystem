@@ -48,7 +48,7 @@ function List(props) {
             <span className="sr-only">Loading...</span>
           </Spinner> }
         <Jumbotron>
-          <h2>List of Courses Taken by {props.screen}</h2>
+          <h2>List of Courses Taken by You</h2>
         </Jumbotron>
       
           <ListGroup>

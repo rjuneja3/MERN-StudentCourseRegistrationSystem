@@ -80,7 +80,7 @@ function AddCourse(props) {
     
     return (
         <div>
-        <h2> Add a course {studentNumber} </h2>
+        <h2> Add a Course for Student with StudentID: {studentNumber} </h2>
         {showLoading && 
             <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
