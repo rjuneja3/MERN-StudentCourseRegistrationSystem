@@ -38,11 +38,6 @@ function List(props) {
     fetchData();
   }, []);
 
-  // const showDetail = (studentNumber) => {
-  //   props.history.push({
-  //     pathname: '/show/' + studentNumber
-  //   });
-  // }
 
   return (
     <div>

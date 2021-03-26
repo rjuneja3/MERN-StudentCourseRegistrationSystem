@@ -19,7 +19,7 @@ import ListOfStudents from './components/ListOfStudents';
 import ListOfCourses from './components/ListOfCourses';
 import ListOfStudentsInCourse from './components/ListOfStudentsInCourse';
 import AddCourse from './components/AddCourse';
-import MyCourses from './components/MyCourses';
+import CoursesOfStudent from './components/CoursesOfStudent';
 import EditStudent from './components/EditStudent'; 
 import EditCourse from './components/EditCourse';
 
@@ -31,8 +31,8 @@ function App(props) {
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/login">Home</Nav.Link>
-          <Nav.Link href="/listOfStudents">List of Students</Nav.Link>
-          <Nav.Link href="/listOfCourses">List of Courses</Nav.Link>
+          <Nav.Link href="/listOfStudents">List of All Students</Nav.Link>
+          <Nav.Link href="/listOfCourses">List of All Courses</Nav.Link>
         </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -46,7 +46,7 @@ function App(props) {
         <Route render ={()=> < ListOfCourses />} path="/listOfCourses" />
         <Route render ={()=> <AddCourse/>}path="/addCourse"/>
         <Route render ={()=> < ListOfStudentsInCourse />} path="/listOfStudentsInCourse/:courseCode" />
-        <Route render ={()=> < MyCourses />} path="/myCourses/:studentId" />
+        <Route render ={()=> < CoursesOfStudent />} path="/CoursesOfStudent/:studentId" />
         <Route render ={()=> < EditStudent />} path="/editStudent/:studentNumber" />
         <Route render ={()=> < ShowStudent />} path="/showStudent" />
         <Route render ={()=> < ShowCourse />} path="/showCourse/:courseId" />

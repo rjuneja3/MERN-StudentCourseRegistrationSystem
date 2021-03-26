@@ -14,21 +14,26 @@ function AddCourse(props) {
     const [course, setCourse] = useState({ _id: '', courseCode: '', courseName: '', section:'',semester:'', studentEntity: '' });
     const [showLoading, setShowLoading] = useState(false);
 
-    const courseCodes = [
-      {value: 'CNET307', name: 'IT Project Management', label:'CNET307 - IT Project Management'},
-      {value: 'COMP308', name: 'Emerging Technologies', label:'COMP308 - Emerging Technologies'},
-      {value: 'COMP313', name: 'Software Project 2', label:'COMP313 - Software Project 2'},
-      {value: 'COMP321', name: 'Systems Integration', label:'COMP321 - Systems Integration'},
+    const courseCode_List = [
+      {value: 'ENGL101', name: 'English Basics', label:'ENGL101: English Basics'},
+      {value: 'BSN101', name: 'Business Basics', label:'BSN101: Business Basics'},
+      {value: 'COMP229', name: 'Web Application Development', label:'COMP229: Web Application Development'},
+      {value: 'COMP253', name: 'Assets for Game Developers', label:'COMP253: Assets for Game Developers'},
+      {value: 'ADCS702', name: 'Introduction to Creative Strategy', label:'ADCS702: Introduction to Creative Strategy'},
+      {value: 'ADCS723', name: 'The Digital Ecosystem', label:'ADCS723: The Digital Ecosystem'},
+
+
   ];
-    //
+    
     const apiUrl = "http://localhost:3000/courses"
-    //
+    
     const addCourse = (e) => {
          validateform()
         setShowLoading(true);
         e.preventDefault();
-        const data = {courseCode: course.courseCode, courseName: course.courseName, section: course.section, semester:course.semester, studentEntity: studentNumber };
-        //
+        const data = {courseCode: course.courseCode, courseName: course.courseName, 
+          section: course.section, semester:course.semester, studentEntity: studentNumber };
+        
         axios.post(apiUrl, data)
         .then((result) => {
             setShowLoading(false);
@@ -61,7 +66,7 @@ function AddCourse(props) {
 
       const onCourseChange=()=>{
         var cc = document.getElementById('courseCode');
-        courseCodes.forEach(element=>{
+        courseCode_List.forEach(element=>{
           if(cc.value===element.value){
             setCourse(course.courseName = element.name)
           }
@@ -88,7 +93,7 @@ function AddCourse(props) {
                 <Form.Control as="select" name="courseCode" id="courseCode" value={course.courseCode}  onChange={onCourseChangeHandler} required>
                     <option >Choose....</option>
                     {
-                      courseCodes.map((opt,idx)=>{
+                      courseCode_List.map((opt,idx)=>{
                         return (
                           <option key={idx} value={opt.value}>{opt.label}</option>
                         )

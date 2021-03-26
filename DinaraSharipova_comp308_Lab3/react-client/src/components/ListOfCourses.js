@@ -13,11 +13,13 @@ function List(props) {
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
   const apiUrl = "http://localhost:3000/students";
-  const courseCodes = [
-    {value: 'CNET307', name: 'IT Project Management', label:'CNET307 - IT Project Management'},
-    {value: 'COMP308', name: 'Emerging Technologies', label:'COMP308 - Emerging Technologies'},
-    {value: 'COMP313', name: 'Software Project 2', label:'COMP313 - Software Project 2'},
-    {value: 'COMP321', name: 'Systems Integration', label:'COMP321 - Systems Integration'},
+  const courseCode_List = [
+    {value: 'ENGL101', name: 'English Basics', label:'ENGL101: English Basics'},
+      {value: 'BSN101', name: 'Business Basics', label:'BSN101: Business Basics'},
+      {value: 'COMP229', name: 'Web Application Development', label:'COMP229: Web Application Development'},
+      {value: 'COMP253', name: 'Assets for Game Developers', label:'COMP253: Assets for Game Developers'},
+      {value: 'ADCS702', name: 'Introduction to Creative Strategy', label:'ADCS702: Introduction to Creative Strategy'},
+      {value: 'ADCS723', name: 'The Digital Ecosystem', label:'ADCS723: The Digital Ecosystem'},
 ];
 
   useEffect(() => {
@@ -60,7 +62,7 @@ function List(props) {
           </Jumbotron>
           <Container>
           <ListGroup>
-          {courseCodes.map((item, idx) => (
+          {courseCode_List.map((item, idx) => (
               <ListGroup.Item key={idx} action onClick={() => { showDetail(item.value) }}>{item.label}</ListGroup.Item>
             ))}
           </ListGroup>
