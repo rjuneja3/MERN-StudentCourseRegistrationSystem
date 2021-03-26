@@ -1,4 +1,4 @@
-// Load the module dependencies
+
 const Student = require('mongoose').model('Student');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -6,56 +6,39 @@ const config = require('../../config/config');
 const jwtExpirySeconds = 300;
 const jwtKey =config.secretKey;
 
-//
-// Create a new error handling controller method
+
 const getErrorMessage = function(err) {
-	// Define the error message variable
 	var message = '';
 
-	// If an internal MongoDB error occurs get the error message
 	if (err.code) {
 		switch (err.code) {
-			// If a unique index error occurs set the message error
 			case 11000:
 			case 11001:
-				message = 'student number already exists';
+				message = 'Student number already exists';
 				break;
-			// If a general error occurs set the message error
 			default:
 				message = 'Something went wrong';
 		}
 	} else {
-		// Grab the first error message from a list of possible errors
 		for (const errName in err.errors) {
 			if (err.errors[errName].message) message = err.errors[errName].message;
 		}
 	}
 
-	// Return the message error
 	return message;
 };
-// Create a new student
 exports.create = function (req, res, next) {
-    // Create a new instance of the 'student' Mongoose model
-    var student = new Student(req.body); //get data from React form
-    console.log("body: " + req.body.studentNumber);
-
-    // Use the 'student' instance's 'save' method to save a new student document
+    var student = new Student(req.body);
     student.save(function (err) {
         if (err) {
-            // Call the next middleware with an error message
             return next(err);
         } else {
-            // Use the 'response' object to send a JSON response
             res.json(student);
-            
         }
     });
 };
-//
-// Returns all users
+// LIST ALL STUDENTS
 exports.list = function (req, res, next) {
-    // Use the 'student' instance's 'find' method to retrieve a new student document
     Student.find({}, function (err, students) {
         if (err) {
             return next(err);
@@ -64,27 +47,20 @@ exports.list = function (req, res, next) {
         }
     });
 };
-//
-//'read' controller method to display a student
+
 exports.read = function(req, res) {
-	// Use the 'response' object to send a JSON response
 	res.json(req.student);
 };
-//
-// 'userByID' controller method to find a student by its id
+
 exports.userByID = function (req, res, next, id) {
-	// Use the 'student' static 'findOne' method to retrieve a specific student
 	Student.findOne({
         studentNumber: id
 	}, (err, student) => {
 		if (err) {
-			// Call the next middleware with an error message
 			return next(err);
 		} else {
-			// Set the 'req.student' property
             req.student = student;
             console.log(student);
-			// Call the next middleware
 			next();
 		}
 	});
@@ -104,20 +80,6 @@ exports.updateStudent = function(req,res,next){
 	});
 };
 
-//update a student by id
-// exports.update = function(req, res, next) {
-//     console.log(req.body);
-//     Student.findByIdAndUpdate(req.student.id,
-// 		req.body, 
-// 		function (err, student) {
-//       if (err) {
-//         console.log(err);
-//         return next(err);
-//       }
-//       res.json(student);
-//     });
-// };
-
 exports.deleteStudent = function(req,res,next){
 	console.log(req.body);
 	Student.findOneAndRemove(
@@ -134,49 +96,28 @@ exports.deleteStudent = function(req,res,next){
 	});
 };
 
-// delete a student by id
-// exports.delete = function(req, res, next) {
-//     Student.findByIdAndRemove(req.student.id, req.body, function (err, student) {
-//       if (err) return next(err);
-//       res.json(student);
-//     });
-// };
-//
-// authenticates a student
+
 exports.authenticate = function(req, res, next) {
-	// Get credentials from request
-	console.log(req.body)
 	const studentNumber = req.body.auth.studentNumber;
 	const password  = req.body.auth.password;
-	console.log(password)
-	console.log(studentNumber)
-	//find the student with given username using static method findOne
 	Student.findOne({studentNumber: studentNumber}, (err, student) => {
 			if (err) {
 				return next(err);
 			} else {
 			console.log(student)
-			//compare passwords	
+			
 			if(bcrypt.compareSync(password, student.password)) {
-				// Create a new token with the student id in the payload
-  				// and which expires 300 seconds after issue
+				
 				const token = jwt.sign({ id: student._id, studentNumber: student.studentNumber }, jwtKey, 
 					{algorithm: 'HS256', expiresIn: jwtExpirySeconds });
 				console.log('token:', token)
-				// set the cookie as the token string, with a similar max age as the token
-				// here, the max age is in milliseconds
+				
 				res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
 				req.student=student;
 				res.status(200).send({ screen: student.studentNumber, student: student});
-				//
-				//res.json({status:"success", message: "student found!!!", data:{student:
-				//student, token:token}});
-				
-				//req.student=student;
-				//call the next middleware
 				next()
 			} else {
-				res.json({status:"error", message: "Invalid username/password!!!",
+				res.json({status:"error", message: "Invalid Student Number or password",
 				data:null});
 			}
 			

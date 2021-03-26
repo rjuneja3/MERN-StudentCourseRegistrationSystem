@@ -22,7 +22,7 @@ function EditCourse(props) {
       {value: 'COMP321', name: 'Systems Integration', label:'COMP321 - Systems Integration'},
   ];
     //
-    const apiUrl = "http://localhost:3000/api/courses/"+ id;
+    const apiUrl = "http://localhost:3000/courses/"+ id;
   
     //
     //runs only once after the first render

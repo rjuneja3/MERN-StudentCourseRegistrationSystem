@@ -9,51 +9,54 @@ const Schema = mongoose.Schema;
 var StudentSchema = new Schema({
     firstName: {
 		type: String,
-		required: 'firstname is required'
+		max: 50,
+		required: 'First Name is mandatory'
 	},
 	lastName: {
 		type: String,
-		required: 'lastname is required'
+		max: 50,
+		required: 'Last Name is mandatory'
 	},
 	email: {
 		type: String,
+		max:50,
 		// Validate the email format
 		match: [/.+\@.+\..+/, "Please fill a valid email address"]
 	},
 	studentNumber: {
 		type: Number,
-		// Set a unique 'username' index
 		unique: true,
-		// Validate 'username' value existance
-		required: 'Student Number is required',
-		// Trim the 'username' field
+		required: 'Student Number is mandatory',
 	},
 	password: {
 		type: String,
-		// Validate the 'password' value length
 		validate: [
 			(password) => password && password.length > 6,
 			'Password should be longer'
 		]
 	},
-	address:{
+	program:{
 		type: String,
-		required: 'Address is required'
+		max:50,
+		required: 'program is mandatory'
 	},
 	city:{
 		type: String,
-		required: 'City is required'
+		max:30,
+		required: 'City is mandatory'
 	},
+	address:{
+		type: String,
+		max:100,
+		required: 'Address is mandatory'
+	},
+	
 	phone:{
 		type: String,
+		max:15,
 		required: 'Phone Number is required'
 
-	},
-	program:{
-		type: String,
-		required: 'program is required'
 	}
-	
 });
 
 // Set the 'fullname' virtual property

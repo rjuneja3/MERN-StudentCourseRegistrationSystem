@@ -12,7 +12,7 @@ function List(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
-  const apiUrl = "http://localhost:3000/api/coursesofstudent/"+studentNumber;
+  const apiUrl = "http://localhost:3000/coursesofstudent/"+studentNumber;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -21,7 +21,7 @@ function AddCourse(props) {
       {value: 'COMP321', name: 'Systems Integration', label:'COMP321 - Systems Integration'},
   ];
     //
-    const apiUrl = "http://localhost:3000/api/courses"
+    const apiUrl = "http://localhost:3000/courses"
     //
     const addCourse = (e) => {
          validateform()

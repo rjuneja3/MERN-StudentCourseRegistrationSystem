@@ -64,7 +64,7 @@ exports.coursesOfStudent = function (req, res) {
     { studentNumber: req.params.studentId },
     (err, student) => {
       st._id = student._id;
-      console.log('student Id : '+st._id);
+
     }
   ).then(function () {
     Course.find({ studentEntity: st._id })
@@ -110,14 +110,12 @@ exports.courseByCourseCode = function (req, res, next) {
   });
 };
 
-//
 exports.courseById = function (req, res, next) {
   var id = req.params.courseId;
   Course.findById(id).exec((err, course) => {
     if (err) return next(err);
     if (!course) return next(new Error("Failed to load course " + id));
     req.course = course;
-    console.log("in courseByStudentId:", req.course);
     next();
   });
 };
@@ -128,7 +126,6 @@ exports.read = function (req, res) {
 //
 
 exports.update = function (req, res) {
-  console.log("in update:", req.course);
   const course = req.course;
   course.courseName = req.body.courseName;
   course.courseCode = req.body.courseCode;
@@ -141,12 +138,11 @@ exports.update = function (req, res) {
 			return next(err);
 		}
 		else{
-            console.log("Updated Success: "+crse);
 			res.json(crse);
 		}
     });
 };
-//
+
 exports.delete = function (req, res) {
   const course = req.course;
   course.remove((err) => {
@@ -159,13 +155,8 @@ exports.delete = function (req, res) {
     }
   });
 };
-//The hasAuthorization() middleware uses the req.course and req.user objects
-//to verify that the current user is the studentEntity of the current course
+
 exports.hasAuthorization = function (req, res, next) {
-  console.log(
-    "in hasAuthorization - studentEnrolled: ",
-    req.course.studentEntity
-  );
   const stu = new Student();
   Student.findById(req.course.studentEntity).exec((err,student)=>{
     if (err) return next(err);
@@ -174,12 +165,10 @@ exports.hasAuthorization = function (req, res, next) {
     stu._id = student._id;
     console.log("fetched Id : "+ stu._id);
   });
-  console.log("in hasAuthorization - student: ", stu._id);
-  console.log('in hasAuthorization - user: ',req.course.studentEntity._id)
 
   if (req.course.studentEntity !== req.course.studentEntity) {
     return res.status(403).send({
-      message: "User is not authorized",
+      message: "Student is not authorized",
     });
   }
   next();
