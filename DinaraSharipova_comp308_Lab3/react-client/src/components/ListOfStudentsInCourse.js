@@ -60,11 +60,11 @@ function List(props) {
           <ListGroup>
             {data.map((item, idx) => (
               <ListGroup.Item key={idx}>
-                {item.studentEnrolled.firstName +
+                {item.studentEntity.firstName +
                   " " +
-                  item.studentEnrolled.lastName +
+                  item.studentEntity.lastName +
                   " (" +
-                  item.studentEnrolled.studentNumber +
+                  item.studentEntity.studentNumber +
                   ")  -  " +
                   item.section}
               </ListGroup.Item>

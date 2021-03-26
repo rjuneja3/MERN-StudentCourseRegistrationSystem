@@ -11,7 +11,7 @@ function AddCourse(props) {
     //
     const studentNumber = props.screen;
     console.log('props.screen',props.screen)
-    const [course, setCourse] = useState({ _id: '', courseCode: '', courseName: '', section:'',semester:'', studentEnrolled: '' });
+    const [course, setCourse] = useState({ _id: '', courseCode: '', courseName: '', section:'',semester:'', studentEntity: '' });
     const [showLoading, setShowLoading] = useState(false);
 
     const courseCodes = [
@@ -27,7 +27,7 @@ function AddCourse(props) {
          validateform()
         setShowLoading(true);
         e.preventDefault();
-        const data = {courseCode: course.courseCode, courseName: course.courseName, section: course.section, semester:course.semester, studentEnrolled: studentNumber };
+        const data = {courseCode: course.courseCode, courseName: course.courseName, section: course.section, semester:course.semester, studentEntity: studentNumber };
         //
         axios.post(apiUrl, data)
         .then((result) => {

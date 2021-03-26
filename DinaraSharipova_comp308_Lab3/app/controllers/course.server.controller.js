@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Course = mongoose.model("Course");
 const Student = require("mongoose").model("Student");
 
-//
 function getErrorMessage(err) {
   if (err.errors) {
     for (let errName in err.errors) {
@@ -12,34 +11,24 @@ function getErrorMessage(err) {
     return "Unknown server error";
   }
 }
-//
 exports.create = function (req, res) {
   const course = new Course();
   course.courseName = req.body.courseName;
   course.courseCode = req.body.courseCode;
   course.section = req.body.section;
   course.semester = req.body.semester;
-  //course.studentEnrolled = req.body.studentNumber;
-  const stu = new Student();
-  console.log("body: " + req.body);
-  //
-  //
+  const stud_new = new Student();
   Student.findOne(
-    { studentNumber: req.body.studentEnrolled },
+    { studentNumber: req.body.studentEntity },
     (err, student) => {
       if (err) {
         return getErrorMessage(err);
       }
-      //
-      console.log(student);
-      stu._id = student._id;
+      stud_new._id = student._id;
       req.id = student._id;
-      console.log("student._id", req.id);
     }
   ).then(function () {
-    course.studentEnrolled = stu._id;
-    console.log("req.student._id", req.id);
-
+    course.studentEntity = stud_new._id;
     course.save((err) => {
       if (err) {
         console.log("error", getErrorMessage(err));
@@ -53,11 +42,11 @@ exports.create = function (req, res) {
     });
   });
 };
-//
+
 exports.list = function (req, res) {
   Course.find()
     .sort("-created")
-    .populate("studentEnrolled", "firstName lastName fullName")
+    .populate("studentEntity", "firstName lastName fullName")
     .exec((err, courses) => {
       if (err) {
         return res.status(400).send({
@@ -69,11 +58,7 @@ exports.list = function (req, res) {
     });
 };
 
-exports.coursesTakenByStudent = function (req, res) {
-  //var ObjectId = mongoose.Types.ObjectId;
-  //var studentId = new ObjectId(req.params.studentId);
-  //console.log("studentId: " + studentId);
-  console.log('in courses taken by student, Student Id : '+req.params.studentId);
+exports.coursesOfStudent = function (req, res) {
   var st = new Student();
   Student.findOne(
     { studentNumber: req.params.studentId },
@@ -82,8 +67,8 @@ exports.coursesTakenByStudent = function (req, res) {
       console.log('student Id : '+st._id);
     }
   ).then(function () {
-    Course.find({ studentEnrolled: st._id })
-      .populate("studentEnrolled")
+    Course.find({ studentEntity: st._id })
+      .populate("studentEntity")
       .exec((err, courses) => {
         if (err) {
           return res.status(400).send({
@@ -100,7 +85,7 @@ exports.studentsInCourse = function (req, res) {
   var code = req.params.courseCode;
   console.log(code);
   Course.find({ courseCode: code })
-    .populate("studentEnrolled")
+    .populate("studentEntity")
     .exec((err, students) => {
       if (err) {
         return res.status(400).send({
@@ -175,24 +160,24 @@ exports.delete = function (req, res) {
   });
 };
 //The hasAuthorization() middleware uses the req.course and req.user objects
-//to verify that the current user is the studentEnrolled of the current course
+//to verify that the current user is the studentEntity of the current course
 exports.hasAuthorization = function (req, res, next) {
   console.log(
     "in hasAuthorization - studentEnrolled: ",
-    req.course.studentEnrolled
+    req.course.studentEntity
   );
   const stu = new Student();
-  Student.findById(req.course.studentEnrolled).exec((err,student)=>{
+  Student.findById(req.course.studentEntity).exec((err,student)=>{
     if (err) return next(err);
-    if (!student) return next(new Error("Failed to load student " + req.course.courseEnrolled));
+    if (!student) return next(new Error("Failed to load student " + req.course.studentEntity));
     stu.studentNumber = student.studentNumber;
     stu._id = student._id;
     console.log("fetched Id : "+ stu._id);
   });
   console.log("in hasAuthorization - student: ", stu._id);
-  console.log('in hasAuthorization - user: ',req.course.studentEnrolled._id)
+  console.log('in hasAuthorization - user: ',req.course.studentEntity._id)
 
-  if (req.course.studentEnrolled !== req.course.studentEnrolled) {
+  if (req.course.studentEntity !== req.course.studentEntity) {
     return res.status(403).send({
       message: "User is not authorized",
     });

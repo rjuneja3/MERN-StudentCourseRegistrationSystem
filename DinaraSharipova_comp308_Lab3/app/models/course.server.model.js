@@ -3,27 +3,27 @@ const Schema = mongoose.Schema;
 const CourseSchema = new Schema({
     courseCode: {
         type: String,
-        required: 'course code is required'
+        required: 'Course code is mandatory'
     },
     courseName: {
         type: String,
+        required: 'Course Name is mandatory',
         default: '',
-        trim: true,
-        required: 'Couse Name cannot be blank'
+        trim: true
     },
     section: {
         type: String, 
         default: '',
-        required: 'Section is required',
+        required: 'Section is mandatory',
         trim: true
     },
     semester: {
         type: String, 
+        required: 'Semester is mandatory',
         default: '',
-        required: 'Semester is required',
         trim: true
     },
-    studentEnrolled: {
+    studentEntity: {
         type: Schema.Types.ObjectId,
         ref: 'Student'
     }

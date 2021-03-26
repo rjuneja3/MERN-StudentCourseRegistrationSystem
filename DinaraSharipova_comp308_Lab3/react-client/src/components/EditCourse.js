@@ -12,7 +12,7 @@ function EditCourse(props) {
     const [studentId,setStudentId] = useState('');
     const id = props.match.params.courseId;
     console.log('props.screen',props.match.params.courseId)
-    const [course, setCourse] = useState({ _id: '', courseCode: '', courseName: '', section:'',semester:'', studentEnrolled: '' });
+    const [course, setCourse] = useState({ _id: '', courseCode: '', courseName: '', section:'',semester:'', studentEntity: '' });
     const [showLoading, setShowLoading] = useState(false);
 
     const courseCodes = [
@@ -32,7 +32,7 @@ function EditCourse(props) {
     const fetchData = async () => {
       const result = await axios(apiUrl);
       setCourse(result.data);
-      setStudentId(course.studentEnrolled);
+      setStudentId(course.studentEntity);
       console.log(result.data);
       setShowLoading(false);
     };
