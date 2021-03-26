@@ -20,7 +20,7 @@ import ListOfCourses from './components/ListOfCourses';
 import ListOfStudentsInCourse from './components/ListOfStudentsInCourse';
 import AddCourse from './components/AddCourse';
 import CoursesOfStudent from './components/CoursesOfStudent';
-import EditStudent from './components/EditStudent'; 
+import UpdateStudent from './components/UpdateStudent'; 
 import EditCourse from './components/EditCourse';
 
 function App(props) {
@@ -47,7 +47,7 @@ function App(props) {
         <Route render ={()=> <AddCourse/>}path="/addCourse"/>
         <Route render ={()=> < ListOfStudentsInCourse />} path="/listOfStudentsInCourse/:courseCode" />
         <Route render ={()=> < CoursesOfStudent />} path="/CoursesOfStudent/:studentId" />
-        <Route render ={()=> < EditStudent />} path="/editStudent/:studentNumber" />
+        <Route render ={()=> < UpdateStudent />} path="/updateStudent/:studentNumber" />
         <Route render ={()=> < ShowStudent />} path="/showStudent" />
         <Route render ={()=> < ShowCourse />} path="/showCourse/:courseId" />
         <Route render ={()=> < EditCourse />} path="/editCourse/:courseId" />
