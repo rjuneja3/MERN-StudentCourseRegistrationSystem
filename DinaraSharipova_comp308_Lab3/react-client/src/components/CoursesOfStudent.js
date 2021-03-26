@@ -18,8 +18,6 @@ function List(props) {
     const fetchData = async () => {
       axios.get(apiUrl)
         .then(result => {
-          console.log('result.data:',result.data)
-          //check if the user has logged in
           if(result.data.screen !== 'auth')
           {
             
@@ -34,26 +32,6 @@ function List(props) {
       };  
     fetchData();
   }, []);
-
-  // const editCourse = (id) => {
-  //   props.history.push({
-  //     pathname: '/editCourse/' + id
-  //   });
-  // };
-
-  // const deleteCourse = (id) => {
-  //     const course = 
-  //     console.log('Course Id: '+ id);
-  //     const deleteUrl="http://localhost:3000/api/courses/"+id;
-  //   setShowLoading(true);
-  //   axios.delete(deleteUrl,)
-  //     .then((result) => {
-  //       setShowLoading(false);
-  //       props.history.push({
-  //           pathname: '/login'
-  //       });
-  //     }).catch((error) => setShowLoading(false));
-  // };
 
   const showDetail = (courseId) => {
     props.history.push({
@@ -72,19 +50,7 @@ function List(props) {
         <Jumbotron>
           <h2>List of Courses Taken by {props.screen}</h2>
         </Jumbotron>
-          {/* {data.map((item,idx)=>(
-              <Jumbotron key={idx}>
-                <h1>Course Name : {item.courseName}</h1>
-                <p>Course Code : {item.courseCode}</p>
-                <p>Section : {item.section}</p>
-
-        <p>
-          <Button type="button" variant="primary" onClick={() => { editCourse(item._id) }}>Edit</Button>&nbsp;
-          <Button type="button" variant="danger" onClick={() => { deleteCourse(item._id) }}>Drop</Button>
-        </p>
-              </Jumbotron>
-            ))} */}
-
+      
           <ListGroup>
             {data.map((item, idx) => (
               <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>
@@ -100,5 +66,5 @@ function List(props) {
 
   );
 }
-//
+
 export default withRouter(List);

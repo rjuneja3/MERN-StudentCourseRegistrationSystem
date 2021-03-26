@@ -38,12 +38,10 @@ function View(props) {
 
   const listCourses = (id) => {
     setCourse("n");
-    console.log(props);
   };
 
   const addCourse = () => {
     setCourse("y");
-    console.log(course);
   };
   
   const showDetail = () => {
