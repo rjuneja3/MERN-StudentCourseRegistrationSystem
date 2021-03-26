@@ -20,9 +20,9 @@ function ShowCourse(props) {
     fetchData();
   }, []);
 
-  const editCourse = (id) => {
+  const updateCourse = (id) => {
     props.history.push({
-      pathname: '/editCourse/' + id
+      pathname: '/updateCourse/' + id
     });
   };
 
@@ -53,7 +53,7 @@ function ShowCourse(props) {
                 <p>Section : {data.section}</p>
 
         <p>
-          <Button type="button" variant="primary" onClick={() => { editCourse(data._id) }}>Edit</Button>&nbsp;
+          <Button type="button" variant="primary" onClick={() => { updateCourse(data._id) }}>Edit</Button>&nbsp;
           <Button type="button" variant="danger" onClick={() => { deleteCourse(data._id) }}>Drop</Button>
         </p>
         <Button className="mt-2 btn-secondary" href="/login">Go Back</Button>

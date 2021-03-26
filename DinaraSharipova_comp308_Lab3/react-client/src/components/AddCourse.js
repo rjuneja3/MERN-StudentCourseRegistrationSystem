@@ -91,7 +91,7 @@ function AddCourse(props) {
               <Form.Group>
                 <Form.Label> Course Name</Form.Label>
                 <Form.Control as="select" name="courseCode" id="courseCode" value={course.courseCode}  onChange={onCourseChangeHandler} required>
-                    <option >Choose....</option>
+                    <option >Select a Course Name</option>
                     {
                       courseCode_List.map((opt,idx)=>{
                         return (
@@ -105,25 +105,30 @@ function AddCourse(props) {
               <Form.Group>
                 <Form.Label> Section</Form.Label>
                 <Form.Control as="select" name="section" id="section" value={course.section} onChange={onChange} required>
-                    <option>Choose....</option>
-                    <option value="001">001</option>
-                    <option value="002">002</option>
-                    <option value="003">003</option>
+                    <option>Select a section to successfully register</option>
+                    <option value="001">Section: 001</option>
+                    <option value="002">Section: 002</option>
+                    <option value="003">Section: 003</option>
+                    <option value="004">Section: 004</option>
+                    <option value="005">Section: 005</option>
+                    <option value="006">Section: 006</option>
+                    <option value="007">Section: 007</option>
+
                 </Form.Control>
               </Form.Group>
 
               <Form.Group>
                 <Form.Label> Semester</Form.Label>
                 <Form.Control as="select" name="semester" id="semester" value={course.semester} onChange={onChange} required>
-                    <option>Choose....</option>
-                    <option value="Summer 2021">Summer 2021</option>
-                    <option value="Fall 2021">Fall 2021</option>
-                    <option value="Winter 2022">Winter 2022</option>
+                    <option>Select a semester</option>
+                    <option value="2021 Summer">Summer 2021 (May 2021)</option>
+                    <option value="2021 Fall">Fall 2021 (September 2021)</option>
+                    <option value="2022 Winter">Winter 2022 (January 2022)</option>
                 </Form.Control>
               </Form.Group>
 
-              <Button variant="primary" type="submit">
-                Add Course
+              <Button variant="warning" type="submit">
+                Enroll Into course
               </Button>
             </Form>
             <Button className="mt-2 btn-secondary" href="/login">Go Back</Button>

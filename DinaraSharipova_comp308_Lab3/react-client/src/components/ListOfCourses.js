@@ -45,7 +45,7 @@ function List(props) {
 
   const showDetail = (courseCode) => {
     props.history.push({
-      pathname: '/listOfStudentsInCourse/' + courseCode
+      pathname: '/StudentsEnrolledInCourse/' + courseCode
     });
   }
 

@@ -25,7 +25,7 @@ function ShowUser(props) {
 
   const editUser = (id) => {
     props.history.push({
-      pathname: "/editStudent/" + id,
+      pathname: "/updateStudent/" + id,
     });
   };
 
@@ -83,8 +83,7 @@ function ShowUser(props) {
           >
             Update Profile
           </Button>
-              
-          {/* <Button type="button" variant="danger" onClick={() => { deleteUser(data.studentNumber) }}>Delete</Button> */}
+                      
         </p>
         </Card.Body>
       </Card>

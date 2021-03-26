@@ -104,22 +104,27 @@ exports.authenticate = function(req, res, next) {
 			if (err) {
 				return next(err);
 			} else {
-			console.log(student)
-			
-			if(bcrypt.compareSync(password, student.password)) {
+			console.log(student);
+			if(student != null){
+				if(bcrypt.compareSync(password, student.password)) {
 				
-				const token = jwt.sign({ id: student._id, studentNumber: student.studentNumber }, jwtKey, 
-					{algorithm: 'HS256', expiresIn: jwtExpirySeconds });
-				console.log('token:', token)
-				
-				res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
-				req.student=student;
-				res.status(200).send({ screen: student.studentNumber, student: student});
-				next()
-			} else {
-				res.json({status:"error", message: "Invalid Student Number or password",
-				data:null});
+					const token = jwt.sign({ id: student._id, studentNumber: student.studentNumber }, jwtKey, 
+						{algorithm: 'HS256', expiresIn: jwtExpirySeconds });
+					console.log('token:', token)
+					
+					res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
+					req.student=student;
+					res.status(200).send({ screen: student.studentNumber, student: student});
+					next()
+				} else {
+					res.json({status:"error", message: "Invalid Student Number or password",
+					data:null});
+				}
 			}
+			else{
+				res.json({status:"error", message: "Invalid Student Number or password", data:null});
+			}
+			
 			
 		}
 		

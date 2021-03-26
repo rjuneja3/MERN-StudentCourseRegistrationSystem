@@ -13,7 +13,7 @@ function List(props) {
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
   const apiUrl =
-    "http://localhost:3000/studentsincourse/" +
+    "http://localhost:3000/StudentsEnrolledInCourse/" +
     props.match.params.courseCode;
   
   useEffect(() => {
