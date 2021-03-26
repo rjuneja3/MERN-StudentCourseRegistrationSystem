@@ -12,14 +12,14 @@ function List(props) {
   const [data, setData] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [listError, setListError] = useState(false);
-  const apiUrl = "http://localhost:3000/StudentCourse/"+studentNumber;
+  const apiUrl = "http://localhost:3000/api/StudentCourses/"+studentNumber;
 
   useEffect(() => {
     const fetchData = async () => {
       axios.get(apiUrl)
         .then(result => {
           console.log('result.data:',result.data)
-          //check if the user has logged in
+         // check if the user has logged in
           if(result.data.screen !== 'auth')
           {
             
@@ -62,6 +62,7 @@ function List(props) {
     
   }
   return (
+   
     <div>
         
       { data.length !== 0

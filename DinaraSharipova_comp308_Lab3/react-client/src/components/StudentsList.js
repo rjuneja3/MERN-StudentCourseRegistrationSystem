@@ -32,11 +32,11 @@ function StudentList(props) {
     fetchData();
   }, []);
 
-  const showDetail = (studentNumber) => {
-    props.history.push({
-      pathname: '/studentprofile/' + studentNumber
-    });
-  }
+  // const showDetail = (studentNumber) => {
+  //   props.history.push({
+  //     pathname: '/studentprofile/' + studentNumber
+  //   });
+  // }
 
   return (
     <div>
@@ -47,7 +47,7 @@ function StudentList(props) {
           </Spinner> }
           <ListGroup>
             {data.map((item, idx) => (
-              <ListGroup.Item key={idx} action onClick={() => { showDetail(item.studentNumber) }}>{item.firstName}</ListGroup.Item>
+              <ListGroup.Item key={idx}>{item.firstName} {item.lastName} ({item.studentNumber})</ListGroup.Item>
             ))}
           </ListGroup>
         </div>

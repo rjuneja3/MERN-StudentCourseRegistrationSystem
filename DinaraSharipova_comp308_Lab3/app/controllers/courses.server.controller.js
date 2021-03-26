@@ -86,29 +86,55 @@ exports.courseByCode = function (req, res, next) {
     });
   };
 
-// LIST COURSES BY A STUDENT
-exports.coursesByStudent = function (req, res) {
-    var studentEntity = new Student();
-    Student.findOne(
-      { studentNumber: req.params.studentNumber },
-      (err, student) => {
-        studentEntity._id = student._id;
-      }
-    ).then(function () {
-      Course.find({ studentEntity: studentEntity._id })
-        .populate("studentEntity")
-        .exec((err, courses) => {
-          if (err) {
-            return res.status(400).send({
-              message: getErrorMessage(err),
-            });
-          } else {
-            res.status(200).json(courses);
-          }
-        });
-    });
-  };
+// // LIST COURSES BY A STUDENT
+// exports.coursesByStudent = function (req, res) {
+//     var studentEntity = new Student();
+//     Student.findOne(
+//       { studentNumber: req.params.studentNumber },
+//       (err, student) => {
+//         studentEntity._id = student._id;
+//       }
+//     ).then(function () {
+//       Course.find({ studentEntity: studentEntity._id })
+//         .populate("studentEntity")
+//         .exec((err, courses) => {
+//           if (err) {
+//             return res.status(400).send({
+//               message: getErrorMessage(err),
+//             });
+//           } else {
+//             res.status(200).json(courses);
+//           }
+//         });
+//     });
+//   };
 
+exports.coursesByStudent = function (req, res) {
+  //var ObjectId = mongoose.Types.ObjectId;
+  //var studentId = new ObjectId(req.params.studentId);
+  //console.log("studentId: " + studentId);
+  console.log('in courses taken by student, Student Id : '+req.params.studentNumber);
+  var st = new Student();
+  Student.findOne(
+    { studentNumber: req.params.studentNumber },
+    (err, student) => {
+      st._id = student._id;
+      console.log('student Id : '+st._id);
+    }
+  ).then(function () {
+    Course.find({ StudentEntity: st._id })
+      .populate("studentEnrolled")
+      .exec((err, courses) => {
+        if (err) {
+          return res.status(400).send({
+            message: getErrorMessage(err),
+          });
+        } else {
+          res.status(200).json(courses);
+        }
+      });
+  });
+};
 // LIST ALL STUDENTS IN A COURSE
 exports.courseAllStudents = function (req, res) {
     var courseCode = req.params.courseCode;
