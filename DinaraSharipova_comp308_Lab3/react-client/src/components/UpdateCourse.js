@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import React, { useState,useEffect } from 'react';
 
 //
-function EditCourse(props) {
+function UpdateCourse(props) {
     //
     const [studentId,setStudentId] = useState('');
     const id = props.match.params.courseId;
@@ -134,4 +134,4 @@ function EditCourse(props) {
 
 }
 
-export default withRouter(EditCourse);
+export default withRouter(UpdateCourse);

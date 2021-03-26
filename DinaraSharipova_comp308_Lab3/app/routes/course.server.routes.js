@@ -16,7 +16,7 @@ module.exports = function (app) {
         app.route('/coursesofstudent/:studentId')
             .get(courses.read);
         
-        app.route('/studentsincourse/:courseCode')
+        app.route('/StudentsEnrolledInCourse/:courseCode')
             .get(courses.read);
         app.param('courseId', courses.courseById);
         app.param('courseCode', courses.studentsInCourse);

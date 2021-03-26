@@ -17,11 +17,15 @@ import ShowStudent from './components/ShowStudent';
 import ShowCourse from './components/ShowCourse';
 import ListOfStudents from './components/ListOfStudents';
 import ListOfCourses from './components/ListOfCourses';
-import ListOfStudentsInCourse from './components/ListOfStudentsInCourse';
+import StudentsEnrolledInCourse from './components/StudentsEnrolledInCourse';
 import AddCourse from './components/AddCourse';
 import CoursesOfStudent from './components/CoursesOfStudent';
 import UpdateStudent from './components/UpdateStudent'; 
+<<<<<<< HEAD
 import EditCourse from './components/EditCourse';
+=======
+import UpdateCourse from './components/UpdateCourse';
+>>>>>>> main
 
 function App(props) {
   return (
@@ -45,12 +49,12 @@ function App(props) {
         <Route render ={()=> < ListOfStudents />} path="/listOfStudents" />
         <Route render ={()=> < ListOfCourses />} path="/listOfCourses" />
         <Route render ={()=> <AddCourse/>}path="/addCourse"/>
-        <Route render ={()=> < ListOfStudentsInCourse />} path="/listOfStudentsInCourse/:courseCode" />
+        <Route render ={()=> < StudentsEnrolledInCourse />} path="/StudentsEnrolledInCourse/:courseCode" />
         <Route render ={()=> < CoursesOfStudent />} path="/CoursesOfStudent/:studentId" />
         <Route render ={()=> < UpdateStudent />} path="/updateStudent/:studentNumber" />
         <Route render ={()=> < ShowStudent />} path="/showStudent" />
         <Route render ={()=> < ShowCourse />} path="/showCourse/:courseId" />
-        <Route render ={()=> < EditCourse />} path="/editCourse/:courseId" />
+        <Route render ={()=> < UpdateCourse />} path="/updateCourse/:courseId" />
       </div>
     </Router>
   );

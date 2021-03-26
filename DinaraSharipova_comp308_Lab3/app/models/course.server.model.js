@@ -28,4 +28,6 @@ const CourseSchema = new Schema({
         ref: 'Student'
     }
 });
+
+CourseSchema.index({ 'courseCode': 1, 'studentEntity': 1 }, { unique: true });
 mongoose.model('Course', CourseSchema);
