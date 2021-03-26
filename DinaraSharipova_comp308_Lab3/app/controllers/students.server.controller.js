@@ -101,7 +101,8 @@ exports.update = function(req, res, next) {
 };
 // delete a student by id
 exports.delete = function(req, res, next) {
-    Student.findByIdAndRemove({studentNumber: req.student.studentNumber}, req.body, function (err, student) {
+    Student.findByIdAndRemove({studentNumber: req.student.studentNumber},
+		 req.body, function (err, student) {
       if (err) return next(err);
       res.json(student);
     });
@@ -131,12 +132,12 @@ exports.authenticate = function(req, res, next) {
 				// set the cookie as the token string, with a similar max age as the token
 				// here, the max age is in milliseconds
 				res.cookie('token', token, { maxAge: jwtExpirySeconds * 1000,httpOnly: true});
-				res.status(200).send({ screen: student.studentNumber });
+				res.status(200).send({ screen: student.studentNumber, student: student });
 				//
 				//res.json({status:"success", message: "user found!!!", data:{user:
 				//user, token:token}});
 				
-				req.student=student;
+				//req.student=student;
 				//call the next middleware
 				next()
 			} else {
@@ -238,7 +239,7 @@ exports.requiresLogin = function (req, res, next) {
 	  // or if the signature does not match
 	  payload = jwt.verify(token, jwtKey)
 	  console.log('in requiresLogin - payload:',payload)
-	  req.id = payload.id;
+	  req.studentNumber = payload.studentNumber;
 	} catch (e) {
 	  if (e instanceof jwt.JsonWebTokenError) {
 		// if the error thrown is because the JWT is unauthorized, return a 401 error

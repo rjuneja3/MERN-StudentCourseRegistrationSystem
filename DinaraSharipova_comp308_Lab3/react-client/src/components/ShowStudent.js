@@ -6,9 +6,10 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { withRouter } from "react-router-dom";
 
-function ShowStudent(props) {
-  const studentNumber = props.match.params.studentNumber;
-  const [student, setStudent] = useState({});
+function ShowUser(props) {
+  const studentNumber = props.screen;
+  console.log("st number " + studentNumber);
+  const [data, setData] = useState({});
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "http://localhost:3000/students/" + studentNumber;
 
@@ -16,35 +17,36 @@ function ShowStudent(props) {
     setShowLoading(false);
     const fetchData = async () => {
       const result = await axios(apiUrl);
-      setStudent(result.data);
+      setData(result.data);
+      console.log("res data " + result.data);
       setShowLoading(false);
     };
 
     fetchData();
   }, []);
 
-  const editUser = (studentNumber) => {
+  const editUser = (id) => {
     props.history.push({
-      pathname: "/editstudent/" + studentNumber,
+      pathname: "/editStudent/" + id,
     });
   };
 
   const deleteUser = (id) => {
     setShowLoading(true);
-    const Student = {
-      firstName: student.firstName,
-      lastName: student.lastName,
-      email: student.email,
-      studentNumber: student.studentNumber,
-      password: student.password,
-      phone: student.phone,
-      address: student.address,
-      city: student.city,
-      program: student.program,
+    const user = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      studentNumber: data.studentNumber,
+      password: data.password,
+      phone: data.phone,
+      address: data.address,
+      city: data.city,
+      program: data.program,
     };
 
     axios
-      .delete(apiUrl, student)
+      .delete(apiUrl, user)
       .then((result) => {
         setShowLoading(false);
         props.history.push("/listOfStudents");
@@ -61,24 +63,24 @@ function ShowStudent(props) {
       )}
       <Jumbotron>
         <h1>
-          Profile : {student.firstName}, {student.lastName}
+          Profile : {data.firstName}, {data.lastName}
         </h1>
       </Jumbotron>
       <Card>
         <Card.Body>
-        <Card.Title>Student Number: {student.studentNumber}</Card.Title>
-        <Card.Text>Email: {student.email}</Card.Text>
-        <Card.Text>Phone Number: {student.phone}</Card.Text>
-        <Card.Text>Address: {student.address}</Card.Text>
-        <Card.Text>City: {student.city}</Card.Text>
-        <Card.Text>Program: {student.program}</Card.Text>
+        <Card.Title>Student Number: {data.studentNumber}</Card.Title>
+        <Card.Text>Email: {data.email}</Card.Text>
+        <Card.Text>Phone Number: {data.phone}</Card.Text>
+        <Card.Text>Address: {data.address}</Card.Text>
+        <Card.Text>City: {data.city}</Card.Text>
+        <Card.Text>Program: {data.program}</Card.Text>
 
         <p>
           <Button
             type="button"
             variant="primary"
             onClick={() => {
-              editUser(studentNumber);
+              editUser(data.studentNumber);
             }}
           >
             Update Profile
@@ -95,5 +97,4 @@ function ShowStudent(props) {
   );
 }
 
-export default withRouter(ShowStudent);
-
+export default withRouter(ShowUser);

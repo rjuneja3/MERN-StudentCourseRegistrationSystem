@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 //
 import View from './View'
 //
-function App() {
+function App(props) {
   //state variable for the screen, admin or user
   const [screen, setScreen] = useState('auth');
+  const [student,setStudent] = useState([]);
   //store input field data, user name and password
-  const [studentNumber, setStudentNumber] = useState();
+  const [studentNumber, setUsername] = useState();
   const [password, setPassword] = useState();
   const apiUrl = "http://localhost:3000/signin";
   //send studentNumber and password to the server
@@ -20,6 +22,9 @@ function App() {
     console.log('calling auth')
     console.log(studentNumber)
     try {
+      if(studentNumber==null||password==null||studentNumber==''||password==''){
+        
+      }
       //make a get request to /authenticate end-point on the server
       const loginData = { auth: { studentNumber, password } }
       //call api
@@ -29,6 +34,7 @@ function App() {
       //process the response
       if (res.data.screen !== undefined) {
         setScreen(res.data.screen);
+        setStudent(res.data.student);
         console.log(res.data.screen);
       }
     } catch (e) { //print the error
@@ -61,20 +67,23 @@ function App() {
   }, []); //only the first render
   //
   return (
-    <div className="App">
+    <div className="App container">
       {screen === 'auth' 
-        ? <div>
-          <label>Student Number: </label>
+        ? <div className="col-md-8 offset-md-2">
+          <Form.Group>
+            <Form.Label>studentNumber: </Form.Label>
+            <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
+          </Form.Group>
+          <Form.Label>Password: </Form.Label>
+          
+          <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
           <br/>
-          <input type="text" onChange={e => setStudentNumber(e.target.value)} />
+          <Button variant="primary" onClick={auth}>Login</Button>
           <br/>
-          <label>Password: </label>
           <br/>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-          <br/>
-          <button onClick={auth}>Login</button>
+          <p>Click <a href="/create">here</a> to create an account</p>
         </div>
-        : <View screen={screen} setScreen={setScreen} />
+        : <View screen={screen} setScreen={setScreen} student={student} setStudent={setStudent} />
       }
     </div>
   );

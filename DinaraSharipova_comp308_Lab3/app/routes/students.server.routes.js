@@ -4,7 +4,7 @@ var router = express.Router();
 
 module.exports = function (app) {
    
-    app.get("/students",students.requiresLogin,students.list); 
+    app.get("/students",students.list); 
     app.post('/', students.create);
    
 	app.route('/students/:studentNumber')
@@ -13,6 +13,7 @@ module.exports = function (app) {
     .delete(students.delete)
 
     app.param('studentNumber', students.studentByNumber);
+    
     //authenticate user
     app.post('/signin', students.authenticate);
     app.get('/signout', students.signout);
