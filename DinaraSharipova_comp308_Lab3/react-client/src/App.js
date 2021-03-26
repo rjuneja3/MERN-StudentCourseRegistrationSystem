@@ -21,11 +21,9 @@ import StudentsEnrolledInCourse from './components/StudentsEnrolledInCourse';
 import AddCourse from './components/AddCourse';
 import CoursesOfStudent from './components/CoursesOfStudent';
 import UpdateStudent from './components/UpdateStudent'; 
-<<<<<<< HEAD
-import EditCourse from './components/EditCourse';
-=======
+
 import UpdateCourse from './components/UpdateCourse';
->>>>>>> main
+
 
 function App(props) {
   return (
