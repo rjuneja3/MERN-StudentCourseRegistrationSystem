@@ -49,6 +49,7 @@ function View(props) {
   };
 
   return (
+    
     <div className="App">
 
       {course === "y" ? (
@@ -58,13 +59,21 @@ function View(props) {
       ) :course==="myProfile" ?(
         <ShowStudent screen={screen} setScreen={setScreen}/>
       ):(
+        
         <div>
-          <Jumbotron>
-            <h2>Welcome to Student Panel</h2>
-            <p>Your Student Number is: {screen}</p>
-          </Jumbotron>
+        <div class="header">
+        <div class="mask">
+        <div class="d-flex justify-content-center align-items-center h-200">
+          <div class="text-white margin-class">
           
-          <ButtonGroup>
+          <h2 class="mb-3">Welcome to Student Panel</h2>
+          <p class="mb-3">Your Student Number is: {screen}</p>
+          </div>
+        </div>
+      </div></div>
+      
+     <div class="margin-class">
+          <ButtonGroup >
            
             <Button variant="secondary" onClick={addCourse}>Enroll into course</Button>
             <Button variant="secondary"
@@ -78,7 +87,10 @@ function View(props) {
             <Button variant="secondary" onClick={showDetail}>Profile</Button>
             <Button variant="secondary" onClick={deleteCookie}>Log out</Button>
           </ButtonGroup>
+          </div>
+      
         </div>
+       
       )}
     </div>
   );

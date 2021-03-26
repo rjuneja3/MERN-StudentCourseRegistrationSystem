@@ -57,9 +57,10 @@ function List(props) {
           {showLoading && <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner> }
-          <Jumbotron className="text-center">
-            <h2>List Of all courses</h2>
-          </Jumbotron>
+          <div class="header">
+        <div class="mask">
+        <div class="d-flex justify-content-center align-items-center h-200">
+          <div class="text-white margin-class">List Of all courses</div></div></div></div>
           <Container>
           <ListGroup>
           {courseCode_List.map((item, idx) => (

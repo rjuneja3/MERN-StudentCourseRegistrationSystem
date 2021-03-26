@@ -28,6 +28,60 @@
   color: #61dafb;
 }
 
+/* Header/Logo Title */
+.header {
+  padding: 0px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+   background-image: url('https://media-exp1.licdn.com/dms/image/C4E1BAQGD7u7X87gaFw/company-background_10000/0/1519798345957?e=2159024400&v=beta&t=sDq_YBPAGMyDzuQ_C3QRCPzahkkuJTTG-KYFun9u84o');
+   height: 300px;
+   width:100%;
+   box-shadow: 0px 10px 5px #27272780;
+  -webkit-box-shadow: 0px 10px 5px #27272780;
+  -moz-box-shadow: 0px 10px 5px #27272780;
+  position: relative;
+  z-index: 999999;
+}
+.mask{
+background-color: rgba(0, 0, 0, 0.6);
+height:300px;
+}
+.margin-class{
+  margin-top:80px;
+}
+
+.btn-secondary {
+	box-shadow: 0px 24px 14px -7px #276873;
+	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+	background-color:#599bb3;
+	border-radius:12px;
+	border:1px solid #29668f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:15px 32px;
+	text-decoration:none;
+	text-shadow:3px 6px 0px #3d768a;
+}
+.btn:hover {
+	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+	background-color:#408c99;
+}
+.btn:active {
+	position:relative;
+	top:1px;
+}
+.jumbotron{
+  background-size: cover;
+ padding-top: 40px;
+  padding-bottom: 20%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -59,11 +59,12 @@ function ShowUser(props) {
           <span className="sr-only">Loading...</span>
         </Spinner>
       )}
-      <Jumbotron>
-        <h1>
+      <div class="header">
+      <div class="mask">
+      <div class="d-flex justify-content-center align-items-center h-200">
+        <div class="text-white margin-class">
           Profile : {data.firstName}, {data.lastName}
-        </h1>
-      </Jumbotron>
+          </div> </div> </div> </div>
       <Card>
         <Card.Body>
         <Card.Title>Student Number: {data.studentNumber}</Card.Title>

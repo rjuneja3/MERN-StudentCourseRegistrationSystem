@@ -50,9 +50,11 @@ function ListOfStudents(props) {
               <span className="sr-only">Loading...</span>
             </Spinner>
           )}
-          <Jumbotron className="text-center">
-            <h2>List Of all Students</h2>
-          </Jumbotron>
+          <div class="header">
+          <div class="mask">
+          <div class="d-flex justify-content-center align-items-center h-200">
+            <div class="text-white margin-class">List Of all Students </div> </div> </div> </div>
+        
           <Container>
           <ListGroup className="text-center">
             {data.map((item, idx) => (

@@ -47,6 +47,10 @@ function ShowCourse(props) {
       {showLoading && <Spinner animation="border" role="status">
         <span className="sr-only">Loading...</span>
       </Spinner> }    
+      <div class="header">
+          <div class="mask">
+          <div class="d-flex justify-content-center align-items-center h-200">
+            <div class="text-white margin-class">Course Details:</div></div></div></div>
       <Jumbotron>
       <h1>Course Name : {data.courseName}</h1>
                 <p>Course Code : {data.courseCode}</p>

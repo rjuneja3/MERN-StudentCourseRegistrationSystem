@@ -47,10 +47,13 @@ function List(props) {
           {showLoading && <Spinner animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner> }
-        <Jumbotron>
-          <h2>List of Courses Taken by You</h2>
-        </Jumbotron>
-      
+          <div>
+          <div class="header">
+          <div class="mask">
+          <div class="d-flex justify-content-center align-items-center h-200">
+            <div class="text-white margin-class">List of Courses Taken by You</div></div></div></div>
+        </div>
+       
           <ListGroup>
             {data.map((item, idx) => (
               <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>

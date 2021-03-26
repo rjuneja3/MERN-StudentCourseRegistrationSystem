@@ -48,9 +48,10 @@ function List(props) {
               <span className="sr-only">Loading...</span>
             </Spinner>
           )}
-          <Jumbotron className="text-center">
-            <h2>Students Enrolled in {props.match.params.courseCode}</h2>
-          </Jumbotron>
+          <div class="header">
+      <div class="mask">
+      <div class="d-flex justify-content-center align-items-center h-200">
+        <div class="text-white margin-class">Students Enrolled in {props.match.params.courseCode}</div></div></div></div>
           <Container>
           <ListGroup>
             {data.map((item, idx) => (
