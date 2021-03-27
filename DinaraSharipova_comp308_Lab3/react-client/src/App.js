@@ -35,6 +35,7 @@ function App(props) {
           <Nav.Link href="/login">Home</Nav.Link>
           <Nav.Link href="/listOfStudents">List of All Students</Nav.Link>
           <Nav.Link href="/listOfCourses">List of All Courses</Nav.Link>
+          <Nav.Link href="/create">Registration</Nav.Link>
         </Nav>
         </Navbar.Collapse>
       </Navbar>

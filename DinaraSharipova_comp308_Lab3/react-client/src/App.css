@@ -1,3 +1,45 @@
+body{
+  background-color: #778beb;
+}
+.bg-light{
+  background-color: #546de5 !important;
+  color: #fff;
+  border-bottom: 1px dashed #ccc;
+}
+.bg-light a{
+  color: #fff !important; 
+}
+.container{
+  padding-top: 50px !important;
+  max-width:100% !important;
+  padding: 0px !important;
+}
+.form-label{
+color: #fff;
+text-transform: uppercase;
+font-size: 18px;
+}
+.note_para{
+  color: #fff;
+  font-size: 20px;
+}
+.note_para a{
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.jumbotron{
+  background-color: #778beb;
+  background-size: cover;
+ padding-top: 40px;
+  padding-bottom: 20px;
+  padding-left:20%;
+  padding-right:20%;
+}
+.form-group{
+  width:100%;
+}
+/***/
 .App {
   text-align: center;
 }
@@ -68,25 +110,19 @@ height:300px;
 	text-decoration:none;
 	text-shadow:3px 6px 0px #3d768a;
 }
-.btn:hover {
+.btn-secondary:hover {
 	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
 	background-color:#408c99;
 }
-.btn:active {
+.btn-secondary:active {
 	position:relative;
 	top:1px;
 }
-.jumbotron{
-  background-size: cover;
- padding-top: 40px;
-  padding-bottom: 20%;
-}
+
 .app{
   width: 1800px;
 }
-.container{
-  width: 100%;
-}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

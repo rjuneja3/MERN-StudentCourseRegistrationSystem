@@ -71,17 +71,17 @@ function App(props) {
       {screen === 'auth' 
         ? <div className="col-md-8 offset-md-2">
           <Form.Group>
-            <Form.Label>studentNumber: </Form.Label>
+            <Form.Label>Student Number: </Form.Label>
             <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
           </Form.Group>
           <Form.Label>Password: </Form.Label>
           
-          <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
+          <Form.Control type="password" onChange={e => setPassword(e.target.value)}/>
           <br/>
           <Button variant="primary" onClick={auth}>Login</Button>
           <br/>
           <br/>
-          <p>Click <a href="/create">here</a> to create an account</p>
+          <p className="note_para">If you don't have an account, you can <a href="/create">register</a></p>
         </div>
         : <View screen={screen} setScreen={setScreen} student={student} setStudent={setStudent} />
       }
