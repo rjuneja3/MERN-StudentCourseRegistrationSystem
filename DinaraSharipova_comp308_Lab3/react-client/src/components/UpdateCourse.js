@@ -15,11 +15,15 @@ function UpdateCourse(props) {
     const [course, setCourse] = useState({ _id: '', courseCode: '', courseName: '', section:'',semester:'', studentEntity: '' });
     const [showLoading, setShowLoading] = useState(false);
 
-    const courseCodes = [
-      {value: 'CNET307', name: 'IT Project Management', label:'CNET307 - IT Project Management'},
-      {value: 'COMP308', name: 'Emerging Technologies', label:'COMP308 - Emerging Technologies'},
-      {value: 'COMP313', name: 'Software Project 2', label:'COMP313 - Software Project 2'},
-      {value: 'COMP321', name: 'Systems Integration', label:'COMP321 - Systems Integration'},
+    const courseCode_List = [
+      {value: 'ENGL101', name: 'English Basics', label:'ENGL101: English Basics'},
+      {value: 'BSN101', name: 'Business Basics', label:'BSN101: Business Basics'},
+      {value: 'COMP229', name: 'Web Application Development', label:'COMP229: Web Application Development'},
+      {value: 'COMP253', name: 'Assets for Game Developers', label:'COMP253: Assets for Game Developers'},
+      {value: 'ADCS702', name: 'Introduction to Creative Strategy', label:'ADCS702: Introduction to Creative Strategy'},
+      {value: 'ADCS723', name: 'The Digital Ecosystem', label:'ADCS723: The Digital Ecosystem'},
+
+
   ];
     //
     const apiUrl = "http://localhost:3000/courses/"+ id;
@@ -67,7 +71,7 @@ function UpdateCourse(props) {
 
       const onCourseChange=()=>{
         var cc = document.getElementById('courseCode');
-        courseCodes.forEach(element=>{
+        courseCode_List.forEach(element=>{
           if(cc.value===element.value){
             setCourse(course.courseName = element.name)
           }
@@ -93,11 +97,11 @@ function UpdateCourse(props) {
         <Jumbotron>
             <Form onSubmit={updateCourse}>
               <Form.Group>
-                <Form.Label> courseCode</Form.Label>
+                <Form.Label> Course Code is fixed</Form.Label>
                 <Form.Control as="select" name="courseCode" id="courseCode" value={course.courseCode} onChange={onCourseChangeHandler} disabled>
-                    <option disabled>Choose....</option>
+                    <option disabled>Choose</option>
                     {
-                      courseCodes.map((opt,idx)=>{
+                      courseCode_List.map((opt,idx)=>{
                         return (
                           <option key={idx} value={opt.value}>{opt.label}</option>
                         )
@@ -105,26 +109,29 @@ function UpdateCourse(props) {
                     }
                 </Form.Control>
               </Form.Group>
-
               <Form.Group>
-                <Form.Label> Section</Form.Label>
-                <Form.Control as="select" name="section" id="section"  value={course.section} onChange={onChange}>
-                    <option>Choose....</option>
-                    <option value="001">001</option>
-                    <option value="002">002</option>
-                    <option value="003">003</option>
-                </Form.Control>
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label> Semester</Form.Label>
+                <Form.Label> Semester is fixed</Form.Label>
                 <Form.Control as="select" name="semester" id="semester"  value={course.semester} onChange={onChange} disabled>
-                    <option>Choose....</option>
-                    <option value="Summer 2021">Summer 2021</option>
-                    <option value="Fall 2021">Fall 2021</option>
-                    <option value="Winter 2022">Winter 2022</option>
+                    <option value="2021 Summer">Summer 2021 (May 2021)</option>
+                    <option value="2021 Fall">Fall 2021 (September 2021)</option>
+                    <option value="2022 Winter">Winter 2022 (January 2022)</option>
                 </Form.Control>
               </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Section can be changed:</Form.Label>
+                <Form.Control as="select" name="section" id="section"  value={course.section} onChange={onChange}>
+                  <option value="001">Section: 001</option>
+                    <option value="002">Section: 002</option>
+                    <option value="003">Section: 003</option>
+                    <option value="004">Section: 004</option>
+                    <option value="005">Section: 005</option>
+                    <option value="006">Section: 006</option>
+                    <option value="007">Section: 007</option>
+                </Form.Control>
+              </Form.Group>
+
+              
 
               <Button variant="primary" type="submit">
                 update

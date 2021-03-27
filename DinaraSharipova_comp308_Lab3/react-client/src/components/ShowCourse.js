@@ -50,16 +50,19 @@ function ShowCourse(props) {
       <div class="header">
           <div class="mask">
           <div class="d-flex justify-content-center align-items-center h-200">
-            <div class="text-white margin-class">Course Details:</div></div></div></div>
+            <div class="text-white margin-class">Course Details: {data.courseName}</div></div></div></div>
       <Jumbotron>
-      <h1>Course Name : {data.courseName}</h1>
-                <p>Course Code : {data.courseCode}</p>
-                <p>Section : {data.section}</p>
+        <div class="text-center wrapperCourseInfo">
+      <h3>Course Name: <span>{data.courseName}</span></h3>
+                <h3>Course Code: <span>{data.courseCode}</span></h3>
+                <h3>Section: <span>{data.section}</span></h3>
+                <h3>Semester: <span>{data.semester}</span></h3>
 
         <p>
           <Button type="button" variant="primary" onClick={() => { updateCourse(data._id) }}>Edit</Button>&nbsp;
           <Button type="button" variant="danger" onClick={() => { deleteCourse(data._id) }}>Drop</Button>
         </p>
+        </div>
         <Button className="mt-2 btn-secondary" href="/login">Go Back</Button>
       </Jumbotron>
     </div>

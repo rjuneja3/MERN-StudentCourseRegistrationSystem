@@ -63,16 +63,17 @@ function ShowUser(props) {
       <div class="mask">
       <div class="d-flex justify-content-center align-items-center h-200">
         <div class="text-white margin-class">
-          Profile : {data.firstName}, {data.lastName}
+          Profile: {data.firstName} {data.lastName}
           </div> </div> </div> </div>
       <Card>
         <Card.Body>
-        <Card.Title>Student Number: {data.studentNumber}</Card.Title>
-        <Card.Text>Email: {data.email}</Card.Text>
-        <Card.Text>Phone Number: {data.phone}</Card.Text>
-        <Card.Text>Address: {data.address}</Card.Text>
-        <Card.Text>City: {data.city}</Card.Text>
-        <Card.Text>Program: {data.program}</Card.Text>
+        <Card.Title>Student Number: <span>{data.studentNumber}</span></Card.Title>
+        <Card.Text>Name: <span>{data.firstName} {data.lastName}</span></Card.Text>
+        <Card.Text>Email: <span>{data.email}</span></Card.Text>
+        <Card.Text>Phone Number: <span>{data.phone}</span></Card.Text>
+        <Card.Text>Address: <span>{data.address}</span></Card.Text>
+        <Card.Text>City: <span>{data.city}</span></Card.Text>
+        <Card.Text>Program: <span>{data.program}</span></Card.Text>
 
         <p>
           <Button
@@ -83,14 +84,12 @@ function ShowUser(props) {
             }}
           >
             Update Profile
-          </Button>
+          </Button>  <Button className="primary" href="/login">Go Back</Button>
                       
         </p>
         </Card.Body>
       </Card>
-      <Button className="mt-2 btn-secondary" href="/login">
-        Go Back
-      </Button>
+     
     </div>
   );
 }
