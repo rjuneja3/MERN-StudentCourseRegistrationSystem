@@ -29,5 +29,5 @@ const CourseSchema = new Schema({
     }
 });
 
-CourseSchema.index({ 'courseCode': 1, 'studentEntity': 1 }, { unique: true });
+// CourseSchema.index({ 'courseCode': 1, 'studentEntity': 1 }, { unique: true });
 mongoose.model('Course', CourseSchema);
