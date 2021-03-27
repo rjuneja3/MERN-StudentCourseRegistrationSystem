@@ -56,7 +56,7 @@ function ListOfStudents(props) {
             <div class="text-white margin-class">List Of all Students </div> </div> </div> </div>
         
           <Container>
-          <ListGroup className="text-center">
+          <ListGroup className="text-center wrapperList">
             {data.map((item, idx) => (
               <ListGroup.Item
                 key={idx}
@@ -68,13 +68,16 @@ function ListOfStudents(props) {
                 {item.firstName +
                   " " +
                   item.lastName +
-                  " (" +
+                  " | (ID: " +
                   item.studentNumber +
-                  ")"}
+                  ") | From "+
+                  item.city + " | In Program: "
+                  +item.program
+                  }
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <Button className="mt-2 btn-secondary" href="/login">Go Back</Button>
+
           </Container>
         </div>
       ) : (

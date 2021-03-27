@@ -131,7 +131,7 @@ function AddCourse(props) {
                 </Form.Control>
               </Form.Group>
 
-              <Button variant="warning" type="submit">
+              <Button variant="primary" type="submit">
                 Enroll Into course
               </Button>
             </Form>

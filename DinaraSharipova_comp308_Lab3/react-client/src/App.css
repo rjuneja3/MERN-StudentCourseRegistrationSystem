@@ -10,14 +10,14 @@ body{
   color: #fff !important; 
 }
 .container{
-  padding-top: 50px !important;
   max-width:100% !important;
-  padding: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 .form-label{
-color: #fff;
-text-transform: uppercase;
-font-size: 18px;
+color: #fff !important;
+text-transform: uppercase !important;
+font-size: 18px !important;
 }
 .note_para{
   color: #fff;
@@ -38,6 +38,25 @@ font-size: 18px;
 }
 .form-group{
   width:100%;
+}
+.wrapperList{
+  padding-left:20%;
+  padding-right:20%;
+  padding-top: 50px !important;
+  
+}
+.wrapperList a{
+  color:#fff !important;
+}
+.list-group-item-action {
+  color:#fff !important;
+}
+.list-group-item{
+  background-color: #574b90 !important;
+  color:#fff;
+}
+.LoginWrapper{
+  padding-top: 50px !important;
 }
 /***/
 .App {
@@ -95,24 +114,26 @@ height:300px;
 }
 
 .btn-secondary {
-	box-shadow: 0px 24px 14px -7px #276873;
-	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-	background-color:#599bb3;
+	/* box-shadow: 0px 24px 14px -7px #276873; */
+	/* background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%); */
+	background-color:#574b90;
 	border-radius:12px;
-	border:1px solid #29668f;
+	border:1px solid #786fa6;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-transform: uppercase;
 	font-size:15px;
 	font-weight:bold;
-	padding:15px 32px;
+	padding:7px 32px;
+  
 	text-decoration:none;
-	text-shadow:3px 6px 0px #3d768a;
+	/* text-shadow:3px 6px 0px #3d768a; */
 }
 .btn-secondary:hover {
-	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-	background-color:#408c99;
+	/* background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%); */
+	background-color:#786fa6;
 }
 .btn-secondary:active {
 	position:relative;

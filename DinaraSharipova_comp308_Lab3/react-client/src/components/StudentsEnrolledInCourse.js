@@ -51,9 +51,10 @@ function List(props) {
           <div class="header">
       <div class="mask">
       <div class="d-flex justify-content-center align-items-center h-200">
-        <div class="text-white margin-class">Students Enrolled in {props.match.params.courseCode}</div></div></div></div>
+        <div class="text-white margin-class">Students Enrolled in {props.match.params.courseCode}</div>
+        </div></div></div>
           <Container>
-          <ListGroup>
+          <ListGroup className="text-center wrapperList">
             {data.map((item, idx) => (
               <ListGroup.Item key={idx}>
                 {item.studentEntity.firstName +
@@ -61,12 +62,12 @@ function List(props) {
                   item.studentEntity.lastName +
                   " (" +
                   item.studentEntity.studentNumber +
-                  ")  -  " +
+                  ")  in  Section: " +
                   item.section}
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <Button className="mt-2 btn-secondary" href="/login">Go Back</Button>
+          <Button className="mt-2 btn-secondary" href="/listOfCourses">Go Back</Button>
           </Container>
         </div>
       ) : (

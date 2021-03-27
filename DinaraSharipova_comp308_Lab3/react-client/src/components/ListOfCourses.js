@@ -62,12 +62,12 @@ function List(props) {
         <div class="d-flex justify-content-center align-items-center h-200">
           <div class="text-white margin-class">List Of all courses</div></div></div></div>
           <Container>
-          <ListGroup>
+          <ListGroup className="text-center wrapperList">
           {courseCode_List.map((item, idx) => (
               <ListGroup.Item key={idx} action onClick={() => { showDetail(item.value) }}>{item.label}</ListGroup.Item>
             ))}
           </ListGroup>
-          <Button className="mt-2 btn-secondary" href="/login">Go Back</Button>
+        
           </Container>
         </div>
         : < Login />
