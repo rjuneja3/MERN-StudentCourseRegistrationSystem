@@ -97,7 +97,7 @@ function UpdateCourse(props) {
         <Jumbotron>
             <Form onSubmit={updateCourse}>
               <Form.Group>
-                <Form.Label> Course Code is fixed</Form.Label>
+                <Form.Label> Course Code cannot be changed</Form.Label>
                 <Form.Control as="select" name="courseCode" id="courseCode" value={course.courseCode} onChange={onCourseChangeHandler} disabled>
                     <option disabled>Choose</option>
                     {
@@ -110,7 +110,7 @@ function UpdateCourse(props) {
                 </Form.Control>
               </Form.Group>
               <Form.Group>
-                <Form.Label> Semester is fixed</Form.Label>
+                <Form.Label> Semester cannot be changed</Form.Label>
                 <Form.Control as="select" name="semester" id="semester"  value={course.semester} onChange={onChange} disabled>
                     <option value="2021 Summer">Summer 2021 (May 2021)</option>
                     <option value="2021 Fall">Fall 2021 (September 2021)</option>

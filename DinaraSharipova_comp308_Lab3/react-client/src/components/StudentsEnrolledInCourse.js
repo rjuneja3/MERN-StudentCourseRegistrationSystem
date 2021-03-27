@@ -67,7 +67,6 @@ function List(props) {
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <Button className="mt-2 btn-secondary" href="/listOfCourses">Go Back</Button>
           </Container>
         </div>
       ) : (

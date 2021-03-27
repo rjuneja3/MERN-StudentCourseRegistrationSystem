@@ -54,10 +54,10 @@ function List(props) {
             <div class="text-white margin-class">List of Courses Taken by You</div></div></div></div>
         </div>
        
-          <ListGroup>
+          <ListGroup className="text-center wrapperList">
             {data.map((item, idx) => (
               <ListGroup.Item key={idx} action onClick={() => { showDetail(item._id) }}>
-                {item.courseName+"("+item.courseCode+")"+"  -  "+item.section}
+                {item.courseName+" ("+item.courseCode+")"+"  Section:  "+item.section}
               </ListGroup.Item>
             ))}
           </ListGroup>

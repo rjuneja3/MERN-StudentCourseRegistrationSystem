@@ -91,15 +91,6 @@ function EditUser(props) {
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" name="email" id="email" rows="3" placeholder="Enter email" value={student.email} onChange={onChange} />
           </Form.Group>
-          <Form.Group>
-            <Form.Label>student Number</Form.Label>
-            <Form.Control type="text" name="studentNumber" id="studentNumber" placeholder="Enter student name" value={student.studentNumber} onChange={onChange} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="text" name="password" id="password" placeholder="Enter password" value={student.password} onChange={onChange} />
-          </Form.Group>
-          
         
           <Button variant="primary" type="submit">
             Update
